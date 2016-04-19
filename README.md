@@ -1,0 +1,1 @@
+# Linux_diversity_patterns
