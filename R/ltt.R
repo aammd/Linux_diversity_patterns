@@ -7,7 +7,10 @@ library(readr)
 library(tidyr)
 library(ggplot2)
 
-gldt_time <- read_csv("data/gldt_time_debian.csv")
+gldt_time <- read_csv("data/gldt_time_debian.csv",
+                      col_types = "cccc") %>% 
+  mutate(Start = ymd_hms(Start),
+         Stop = ymd_hms(Stop))
 
 ## what was the start time:
 gldt_time$Start %>% min
@@ -73,3 +76,4 @@ data_frame(time = monthly_21c,
 # measure extinction ----------------------------------
 
 
+## lagged differences?
