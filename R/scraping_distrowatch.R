@@ -32,28 +32,43 @@ data_frame(distro = read_html(url) %>%
              html_text()
 )
 
-get_distro_data <- function(yr){
+get_distro_data <- function(yr) {
   url <- paste0("http://distrowatch.com/index.php?dataspan=", yr)
   
+  ## ugh this is inelegant; i protest
+  # if (yr >= 2013) {
+  #   dl_node <- "td.News:nth-child(3)"
+  # } else {
+  #   dl_node <-  ".phr3"
+  # }
+  # 
   list(distro = read_html(url) %>% 
          html_nodes("td:nth-child(3) :nth-child(3) :nth-child(2)") %>% 
          html_text(),
        
        dl = read_html(url) %>% 
-         html_nodes("td.News:nth-child(3)") %>% 
+         html_nodes(".phr3") %>% 
          html_text()
   )
   
 }
 
-get_distro_data(2005)
+testlist <- get_distro_data(2011)
 
-read_html("http://distrowatch.com/index.php?dataspan=2006") %>% 
+testlist$distro
+testlist$dl
+
+
+read_html("http://distrowatch.com/index.php?dataspan=2012") %>% 
   html_nodes("td:nth-child(3) :nth-child(3) :nth-child(2)") %>% 
   html_text()
 
-read_html("http://distrowatch.com/index.php?dataspan=2006") %>% 
+read_html("http://distrowatch.com/index.php?dataspan=2013") %>% 
   html_nodes("td.News:nth-child(3)") %>% 
   html_text()
   
+
+read_html("http://distrowatch.com/table.php?distribution=ubuntu&pkglist=true&version=15.10#pkglist") %>% 
+  html_nodes(".Info td") %>% 
+  html_text()
 
