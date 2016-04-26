@@ -68,7 +68,27 @@ read_html("http://distrowatch.com/index.php?dataspan=2013") %>%
   html_text()
   
 
-read_html("http://distrowatch.com/table.php?distribution=ubuntu&pkglist=true&version=15.10#pkglist") %>% 
-  html_nodes(".Info td") %>% 
+pkgs <- read_html("http://distrowatch.com/table.php?distribution=ubuntu&pkglist=true&version=15.10")
+
+
+
+distro_tab <- pkgs %>% 
+  html_table(fill = TRUE)
+
+library(stringr)
+
+test <- distro_tab[[16]] %>%
+  # str_sub(end = 5000) %>% 
+  str_split("\\n")
+
+test %>% 
+  .[[1]] %>% 
+  .[-1] %>% 
+  str_sub(6)
+
+get_hab <- . %>% 
+  read_html() %>% 
+  html_nodes(".TablesTitle li a , .TablesTitle li b") %>% 
   html_text()
 
+get_hab("http://distrowatch.com/table.php?distribution=ubuntu")
