@@ -11,20 +11,56 @@ library(tidyr)
 
 gldt <- read_csv("data/gldt/gldt.csv", skip = 22)
 
-firstline <- min(which(rowSums(is.na(gldt)) == ncol(gldt)))
+
+## blank rows indicate separations between chunks of data
+firstlines <- which(rowSums(is.na(gldt)) == ncol(gldt))
+
+gldt %>% 
+  slice(firstlines + 1) %>% 
+  View
+## SLS is 8th
+## RedHat is 17
+
+end_deb <- min(which(rowSums(is.na(gldt)) == ncol(gldt)))
 
 fixdate <- function(olddate){
   olddate2 <- ifelse(nchar(olddate) < 5, paste0(olddate, ".01.01"), olddate)
   ymd(ifelse(nchar(olddate2) < 8, paste0(olddate2, ".01"), olddate2))
 }
 
-gldt_time <- gldt %>% 
-  slice(1:(firstline - 1)) %>%
+fix_dates_and_sort <- . %>% 
   .[,2:6] %>% 
   mutate(Start = fixdate(Start),
          Stop  = fixdate(Stop)) %>% 
-  replace_na(replace = list(Stop = ymd("2016.01.01"))) %>% 
+  replace_na(replace = list(Stop = ymd("2013.01.01"))) %>% 
   select(-Color)
 
-write_csv(gldt_time, "data/gldt_time_debian.csv")
+gldt_deb <- gldt %>% 
+  slice(1:(end_deb - 1)) %>%
+  fix_dates_and_sort
+
+write_csv(gldt_deb, "data/gldt_time_debian.csv")
+
+## SLS -----
+
+sls_vec <- (firstlines[8] + 1):(firstlines[9] - 1)
+
+gldt %>% 
+  slice(sls_vec) %>% 
+  fix_dates_and_sort %>% 
+  View
+
+
+# redhat ----------------------------------------------
+
+redhat_vec <- (firstlines[17] + 1):(firstlines[18] - 1)
+
+gldt %>% 
+  slice(redhat_vec) %>% 
+  fix_dates_and_sort
+
+## total ---
+
+
+
 
