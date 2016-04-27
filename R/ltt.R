@@ -7,8 +7,8 @@ library(readr)
 library(tidyr)
 library(ggplot2)
 
-gldt_time <- read_csv("data/gldt_time_debian.csv",
-                      col_types = "cccc") %>% 
+gldt_time <- read_csv("data/distro_time.csv",
+                      col_types = "ccccc") %>% 
   mutate(Start = ymd_hms(Start),
          Stop = ymd_hms(Stop))
 
@@ -38,7 +38,7 @@ data_frame(time = monthly_21c,
 ## what is the distribution of long dead things?
 
 gldt_extinct <- gldt_int %>% 
-  filter(Stop < ymd("2015-01-01")) %>% 
+  filter(Stop < ymd("2013-01-01")) %>% 
   mutate(int = interval(Start, Stop))
 
 
@@ -49,10 +49,6 @@ data_frame(time = monthly_21c,
            ndist = n_dist_time_ext)  %>% 
   ggplot(aes(x = time, y = ndist)) +
   geom_point() + geom_line() 
-
-
-# how long does a distro live? ------------------------
-
 
 
 # can we calculate diversification rate with o --------
