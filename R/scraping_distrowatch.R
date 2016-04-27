@@ -1,6 +1,8 @@
 ## scraping page hit data
 
 library(rvest)
+library(stringr)
+source("R/scraping_functions.R")
 
 tables <- read_html("http://distrowatch.com/dwres.php?resource=popularity") %>% 
   html_nodes(".NewsText table")
@@ -68,23 +70,15 @@ read_html("http://distrowatch.com/index.php?dataspan=2013") %>%
   html_text()
   
 
-pkgs <- read_html("http://distrowatch.com/table.php?distribution=ubuntu&pkglist=true&version=15.10")
 
+# listing packages ------------------------------------
 
+mint <- get_packages("http://distrowatch.com/table.php?distribution=mint&pkglist=true&version=17.3")
 
-distro_tab <- pkgs %>% 
-  html_table(fill = TRUE)
+debi <- get_packages("http://distrowatch.com/table.php?distribution=debian&pkglist=true&version=8.0#pkglist")
 
-library(stringr)
+# header material -------------------------------------
 
-test <- distro_tab[[16]] %>%
-  # str_sub(end = 5000) %>% 
-  str_split("\\n")
-
-test %>% 
-  .[[1]] %>% 
-  .[-1] %>% 
-  str_sub(6)
 
 get_hab <- . %>% 
   read_html() %>% 
