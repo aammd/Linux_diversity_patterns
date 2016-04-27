@@ -8,7 +8,6 @@ library(lubridate)
 library(dplyr)
 library(readr)
 library(tidyr)
-library(ggplot2)
 
 gldt <- read_csv("data/gldt/gldt.csv", skip = 22)
 
