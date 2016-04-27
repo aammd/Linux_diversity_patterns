@@ -18,8 +18,6 @@ gldt_time$Start %>% min
 
 test <- ymd("2000-01-01")
 
-gldt_int <- gldt_time %>% 
-  mutate(int = interval(Start, Stop))
 
 monthly_21c <- test + months(0:(12*13))
 
@@ -54,37 +52,69 @@ data_frame(time = monthly_21c,
 # can we calculate diversification rate with o --------
 
 ## assuming all species last forever
-gldt_eternal <- gldt_int %>% 
-  mutate(Stop = max(Stop)) %>% 
-  mutate(int = interval(Start, Stop))
+make_timeline <- function(.gldt_time){
+  gldt_eternal <- .gldt_time %>% 
+    mutate(Stop = max(Stop)) %>% 
+    mutate(int = interval(Start, Stop))
+  
+  n_dist_time_eternal <- sapply(monthly_21c, is_distro(gldt_eternal))
+  
+  ## counting extinctions
+  gldt_extinctions <- .gldt_time %>% 
+    filter(Stop < ymd("2013-01-01")) %>% 
+    mutate(int = interval(Stop, ymd("2013-01-01")))
+  
+  
+  n_dist_time_extinctions <- sapply(monthly_21c, is_distro(gldt_extinctions))
+  
+  df <- data_frame(time = monthly_21c,
+                   # all = n_dist_time,
+                   speciation = n_dist_time_eternal,
+                   extinction = n_dist_time_extinctions)
+  return(df)
+}
 
-n_dist_time_eternal <- sapply(monthly_21c, is_distro(gldt_eternal))
+make_timeline(gldt_time)
 
-## counting extinctions
-gldt_extinctions <- gldt_int %>% 
-  filter(Stop < ymd("2013-01-01")) %>% 
-  mutate(int = interval(Stop, ymd("2013-01-01")))
+nrow(gldt_time)
 
-
-n_dist_time_extinctions <- sapply(monthly_21c, is_distro(gldt_extinctions))
-
-data_frame(time = monthly_21c,
-           # all = n_dist_time,
-           speciation = n_dist_time_eternal,
-           extinction = n_dist_time_extinctions) %>% 
-  gather(living, number, -time) %>% 
-  group_by(living) %>% 
-  mutate(number = number - lag(number,12)) %>% 
+## create a master timeline dataset
+distro_timeline <- gldt_time %>% 
+  split(gldt_time$clade) %>% 
+  lapply(make_timeline) %>% 
+  bind_rows(.id = "clade")
+  
+## speciation and extinction over time
+distro_timeline %>% 
+  gather(living, number, -time, -clade) %>% 
   ggplot(aes(x = time, y = number, color = living)) +
-  geom_point() + 
+  # geom_point() +
   geom_line() +
+  facet_wrap(~clade) + #, scales = "free_y") +
   theme_minimal() + 
+  theme(legend.position="top") +
   scale_color_discrete(guide_legend(title = "")) +
   ylab("Number of GNU/Linux distribution") + 
   xlab("Time") 
-  # facet_wrap(~living)
+ggsave("figures/distro_ltt.pdf", width = 9)
 
-ggsave("figures/distro_ltt.pdf")
+## change in distribution number over time (instantaneous growth)
+distro_timeline %>% 
+  group_by(clade) %>%  
+  mutate(speciation = (speciation - lag(speciation,12)),
+         extinction = (extinction - lag(extinction,12))) %>% 
+  gather(living, number, -time, -clade) %>% 
+  ungroup %>% 
+  ggplot(aes(x = time, y = number, color = living, group = living)) +
+  # geom_point() + 
+  geom_line() +
+  facet_grid(clade~.) +
+  theme_minimal() + 
+  scale_color_discrete(guide_legend(title = "", position = "top")) +
+  theme(legend.position="top") +
+  ylab("Number of GNU/Linux distribution") + 
+  xlab("Time") 
+ggsave("figures/distro_growth.pdf", width = 9)
 
 # measure lifespan ----------------------------------
 

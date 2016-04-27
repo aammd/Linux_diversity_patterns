@@ -45,22 +45,23 @@ write_csv(gldt_deb, "data/gldt_time_debian.csv")
 
 sls_vec <- (firstlines[8] + 1):(firstlines[9] - 1)
 
-gldt %>% 
+gldt_sls <- gldt %>% 
   slice(sls_vec) %>% 
-  fix_dates_and_sort %>% 
-  View
+  fix_dates_and_sort
 
 
 # redhat ----------------------------------------------
 
 redhat_vec <- (firstlines[17] + 1):(firstlines[18] - 1)
 
-gldt %>% 
+gldt_red <- gldt %>% 
   slice(redhat_vec) %>% 
   fix_dates_and_sort
 
 ## total ---
 
-
-
-
+bind_rows(Debian = gldt_deb,
+           SLS    = gldt_sls,
+           Redhat = gldt_red,
+           .id = "clade") %>% 
+write_csv("data/distro_time.csv")
