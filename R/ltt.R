@@ -52,12 +52,6 @@ data_frame(time = monthly_21c,
 
 
 # can we calculate diversification rate with o --------
-## extant species
-gldt_extant <- gldt_int %>% 
-  filter(Stop > ymd("2015-01-01")) %>% 
-  mutate(int = interval(Start, Stop))
-
-n_dist_time_extant <- sapply(monthly_21c, is_distro(gldt_extant))
 
 ## assuming all species last forever
 gldt_eternal <- gldt_int %>% 
