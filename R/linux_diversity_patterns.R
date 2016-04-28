@@ -14,11 +14,21 @@ distscop <- traits %>%
   ungroup %>% 
   unnest(scope)
 
-distscop %>% select(scope) %>% distinct
+distscop %>% select(scope) %>% distinct %>% View
 
 distscop %>% 
   group_by(Distribution) %>% 
   tally %>% 
   arrange(desc(n)) %>% 
   .[["n"]] %>% 
-  plot(type = "l")
+  plot(type = "p")
+
+distscop %>% 
+  group_by(Distribution) %>% 
+  tally %>% 
+  rename(abd = n) %>% 
+  group_by(abd) %>% 
+  tally %>% 
+  arrange(n)
+
+
