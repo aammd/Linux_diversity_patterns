@@ -1,11 +1,13 @@
 ## "range"
 
 library(dplyr)
-library(readxl)
+library(googlesheets)
 library(tidyr)
 library(stringr)
 
-traits <- read_excel("~/Dropbox/Linux_project/3_traits/traits_sample.xlsx", na = "NA")
+traits_sheet <- gs_title("traits_sample2")
+
+traits <- gs_read_csv(traits_sheet)
 
 distscop <- traits %>% 
   filter(!is.na(Packages)) %>% 
