@@ -4,3 +4,4 @@
 .Ruserdata
 data/gldt
 *.bz2
+.httr-oauth
