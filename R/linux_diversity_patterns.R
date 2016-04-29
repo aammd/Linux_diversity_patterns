@@ -134,7 +134,6 @@ plotweb(distmat)
 library(countrycode)
 library(geonames)
 
-
 country_traits_code <- traits_nonglobal %>% 
   select(Country) %>% 
   distinct %>% 
@@ -166,6 +165,4 @@ traits_nonglobal %>%
   xlab("Population (millions)") +
   ylab("Number of distros")
 
-
 ggsave("figures/speciation_area.png", width = 5, height = 3.5)
-
