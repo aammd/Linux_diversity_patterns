@@ -1,8 +1,8 @@
 # ---------------------------------------------------------
 
-dat <- read.csv("popularity_last_clean_12.csv")
+dat <- read.csv("data/popularity_last_clean_12.csv")
 
-pdf(file="abundance_distribution.pdf", width=10, height=3.5)
+pdf(file="figures/abundance_distribution.pdf", width=10, height=3.5)
 par(mfrow=c(1,3))
 
 
@@ -17,7 +17,7 @@ mtext("B", adj=-0.18, font=2)
 
 
 library(plyr)
-dat <- read.csv("linux_yearly_data.csv")
+dat <- read.csv("data/linux_yearly_data.csv")
 head(dat)
 
 dat <- data.frame(dat, Ones=rep(1, times=nrow(dat)))
