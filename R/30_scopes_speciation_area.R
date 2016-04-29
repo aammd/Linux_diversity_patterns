@@ -11,7 +11,7 @@ library(stringr)
 library(ggplot2)
 
 
-traits_sheet <- read_excel("~/Dropbox/Linux_project/3_traits/Linux_traits.xlsx")
+traits_sheet <- read_excel("data/Linux_traits.xlsx")
 
 
 # splits scopes and trims -----------------------------
