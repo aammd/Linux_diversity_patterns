@@ -37,7 +37,7 @@ MV <- merge(means, vars, by="Distribution")
 
 TPL <- lm(log10(Var) ~ log10(Mean), data=MV)
 
-pdf(file="Taylor_Power_Law.pdf")
+pdf(file="figures/Taylor_Power_Law.pdf")
 plot(log10(Var) ~ log10(Mean), data=MV, pch=19, frame=FALSE)
 a <- round(coef(TPL)[1], 2)
 b <- round(coef(TPL)[2], 2)
