@@ -166,4 +166,6 @@ traits_nonglobal %>%
   xlab("Population (millions)") +
   ylab("Number of distros")
 
+
 ggsave("figures/speciation_area.png", width = 5, height = 3.5)
+
