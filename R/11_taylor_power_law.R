@@ -1,6 +1,6 @@
 library(plyr)
 
-dat <- read.csv("linux_yearly_data.csv")
+dat <- read.csv("data/linux_yearly_data.csv")
 head(dat)
 
 dat <- data.frame(dat, Ones=rep(1, times=nrow(dat)))
