@@ -1,5 +1,9 @@
 ## parsing dates
 ## how has the number of distributions changed over time
+## download tree data
+# 
+# download.file(url = "http://futurist.se/gldt/wp-content/uploads/12.10/gldt1210.tar.bz2",
+#               destfile = "data/gldt.tar.bz2")
 
 
 # read data, packages ---------------------------------
