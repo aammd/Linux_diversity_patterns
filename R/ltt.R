@@ -12,11 +12,17 @@ gldt_time <- read_csv("data/distro_time.csv",
   mutate(Start = ymd_hms(Start),
          Stop = ymd_hms(Stop))
 
+
+# calculate start time --------------------------------
+
 ## what was the start time:
 gldt_time$Start %>% min
 ## ok so from 1993-01-01
 
 test <- ymd("2000-01-01")
+
+gldt_int <- gldt_time %>% 
+  mutate(int = interval(Start, Stop))
 
 
 monthly_21c <- test + months(0:(12*13))
