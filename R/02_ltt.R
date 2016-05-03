@@ -9,8 +9,8 @@ library(ggplot2)
 
 gldt_time <- read_csv("data/distro_time.csv",
                       col_types = "ccccc") %>% 
-  mutate(Start = ymd_hms(Start),
-         Stop = ymd_hms(Stop))
+  mutate(Start = ymd(Start),
+         Stop = ymd(Stop))
 
 
 # calculate start time --------------------------------
