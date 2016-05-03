@@ -67,5 +67,7 @@ gldt_red <- gldt %>%
 bind_rows(Debian = gldt_deb,
            SLS    = gldt_sls,
            Redhat = gldt_red,
-           .id = "clade") %>% 
+           .id = "clade") %>%
+  mutate(Start = as.character(Start),
+         Stop  = as.character(Stop)) %>% 
   write_csv("data/distro_time.csv")
