@@ -9,19 +9,19 @@ library(readxl)
 library(tidyr)
 library(stringr)
 library(ggplot2)
+library(metacom)
+library(bipartite)
 
 
 traits_sheet <- read_excel("data/Linux_traits.xlsx")
 
-
+sizes <- read.csv("data/country_sizes.csv")
 
 # ok maybe we consider countries ----------------------
 
 traits_nonglobal <- traits_sheet %>% 
   filter(Country != "Global")
   
-
-
 traits_nonglobal %>% 
   group_by(Country) %>% 
   tally %>% 
@@ -36,30 +36,14 @@ dist_wide <- traits_nonglobal %>%
 distmat <- as.matrix(dist_wide[-1])
 rownames(distmat) <- dist_wide$Distribution
 
-library(metacom)
 Imagine(as.matrix(dist_wide[-1]), fill = FALSE)
-library(bipartite)
+
 plotweb(distmat)
 
 
 # fix country names -----------------------------------
 
-library(countrycode)
-library(geonames)
 
-country_traits_code <- traits_nonglobal %>% 
-  select(Country) %>% 
-  distinct %>% 
-  mutate(cc = countrycode(Country, "country.name", "iso2c"))
-
-geonames::GNcountryInfo("CN")
-
-country_size <- country_traits_code %>% 
-  group_by(Country, cc) %>% 
-  do(GNcountryInfo(.$cc))
-
-sizes <- country_size %>% 
-  select(Country, cc, areaInSqKm, population)
 
 traits_nonglobal %>%
   group_by(Country) %>% 
