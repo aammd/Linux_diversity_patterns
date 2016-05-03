@@ -68,4 +68,4 @@ bind_rows(Debian = gldt_deb,
            SLS    = gldt_sls,
            Redhat = gldt_red,
            .id = "clade") %>% 
-write_csv("data/distro_time.csv")
+  write_csv("data/distro_time.csv")
