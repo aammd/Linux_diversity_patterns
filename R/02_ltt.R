@@ -109,6 +109,7 @@ distro_timeline %>%
   group_by(clade) %>%  
   mutate(speciation = (speciation - lag(speciation,12)),
          extinction = (extinction - lag(extinction,12))) %>% 
+  filter(time >= ymd("2001-01-01")) %>% 
   gather(living, number, -time, -clade) %>% 
   ungroup %>% 
   ggplot(aes(x = time, y = number, color = living, group = living)) +
@@ -124,6 +125,7 @@ ggsave("figures/distro_growth.pdf", width = 9)
 
 # measure lifespan ----------------------------------
 
+par(mfrow = c(1,1))
 gldt_int %>% 
   mutate(lifespan = as.numeric(Stop - Start)) %>% 
   .[["lifespan"]] %>% 
