@@ -97,12 +97,13 @@ distro_timeline %>%
   # geom_point() +
   geom_line() +
   facet_wrap(~clade) + #, scales = "free_y") +
-  theme_minimal() + 
-  theme(legend.position="top") +
+  theme_bw() + 
+  theme(legend.position="top", plot.title=element_text(hjust=-0.05)) +
   scale_color_discrete(guide_legend(title = "")) +
-  ylab("Number of GNU/Linux distribution") + 
+  ggtitle('A') +
+  ylab("Number of distros") + 
   xlab("Time") 
-ggsave("figures/distro_ltt.pdf", width = 9)
+ggsave("figures/distro_ltt.pdf", width = 10, height = 4)
 
 ## change in distribution number over time (instantaneous growth)
 distro_timeline %>% 
@@ -115,13 +116,14 @@ distro_timeline %>%
   ggplot(aes(x = time, y = number, color = living, group = living)) +
   # geom_point() + 
   geom_line() +
-  facet_grid(clade~.) +
-  theme_minimal() + 
+  facet_grid(~clade) +
+  theme_bw() + 
   scale_color_discrete(guide_legend(title = "", position = "top")) +
-  theme(legend.position="top") +
-  ylab("Number of GNU/Linux distribution") + 
+  theme(legend.position="top", plot.title=element_text(hjust=-0.05)) +
+  ggtitle('B') + 
+  ylab("Instantaneous rate") + 
   xlab("Time") 
-ggsave("figures/distro_growth.pdf", width = 9)
+ggsave("figures/distro_growth.pdf", width = 10, height = 4)
 
 # measure lifespan ----------------------------------
 
@@ -134,7 +136,10 @@ gldt_int %>%
 
 # negative interactions -------------------------------
 
-
-
+# merge the two .pdf files using Linux's pdfnup utility
+system("
+    cd figures
+    pdfnup --nup 1x2 distro_ltt.pdf distro_growth.pdf --outfile evolution.pdf
+    ")
 
 

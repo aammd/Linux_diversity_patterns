@@ -56,10 +56,16 @@ traits_nonglobal %>%
   ggplot(aes(x = cum_a, y = cum_n)) + 
   scale_y_log10() +
   scale_x_log10() +
-  theme_minimal() +
-  stat_smooth(method = "glm",  method.args = list(family = "poisson"), colour = "darkgrey") + 
-  geom_point() +
+  theme_classic() +
+  #theme(plot.title=element_text(hjust=-0.05)) +
+  #ggtitle('A') + 
+  stat_smooth(method = "glm",  method.args = list(family = "poisson"), 
+              color = "red") + 
+  geom_point(shape=1) +
   xlab("Population (millions)") +
-  ylab("Number of distros")
+  ylab("Number of diversification events")
 
-ggsave("figures/speciation_area.png", width = 5, height = 3.5)
+ggsave("figures/speciation_area.pdf", width = 5, height = 3.5)
+
+
+
