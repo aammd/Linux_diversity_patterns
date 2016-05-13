@@ -27,6 +27,13 @@ dat <- dat[is.na(dat$Scope_special) == FALSE,]
 dat$logHPD <- log10(dat$HPD)
 dat$logPackages <- log10(dat$Packages)
 
+# DEFINING GGPLOT-LIKE COLORS
+gg_color_hue <- function(n) {
+  hues = seq(15, 375, length = n + 1)
+  hcl(h = hues, l = 65, c = 100)[1:n]
+}
+my.red <- gg_color_hue(4)[1]
+my.blue <- gg_color_hue(4)[3]
 
 
 # ---------------------------------------------------------------------
@@ -42,33 +49,36 @@ par(mfrow = c(1,3), bty="l")
 ##############################################
 
 plot(log10(HPD)~log10(Packages), 
-     data=dat, col=rgb(0,0,0,alpha=0.5) ,
+     data=dat, col=rgb(0,0,0,alpha=0.3) , pch=19,
      xlab=expression(paste(log[10], " # packages")), 
-     ylab=expression(paste(log[10], " HPD")) )
+     ylab=expression(paste(log[10], " HPD")), las=1 )
 mtext("A", adj=-0.14, font=2)
 
 # Fitting normal linear model (a.k.a. ordinary least-square regression)
 m1 <- lm(logHPD~logPackages, data = dat)
 summary(m1)
 
+# Standardized Pearson correlation
+cor(scale(dat$logHPD), scale(dat$logPackages))
+
 # Predictions of the model
 newdata <- data.frame(logPackages =seq(1, 5, by=0.1))
 preds <- predict(m1, newdata=newdata, se.fit=TRUE )
 
 # Plotting the predictions
-lines(newdata$logPackages, preds$fit, col="red", lwd=2)
+lines(newdata$logPackages, preds$fit, col=my.red, lwd=2)
 lines(newdata$logPackages, preds$fit + preds$se.fit , 
-      col="red", lwd=1, lty=2)
+      col=my.red, lwd=1, lty=2)
 lines(newdata$logPackages, preds$fit - preds$se.fit , 
-      col="red", lwd=1, lty=2)
+      col=my.red, lwd=1, lty=2)
 
 ##################################################
 ##### Panel B - HPD vs # of applications #########
 ##################################################
 
 plot(log10(HPD) ~ jitter(Scope_width, factor=0.5), 
-     data=dat, col=rgb(0,0,0,alpha=0.5) ,
-     xlab="# applications", 
+     data=dat, col=rgb(0,0,0,alpha=0.3) , pch=19,
+     xlab="# applications", las1=1,
      ylab=expression(paste(log[10], " HPD"))  )
 mtext("B", adj=-0.14, font=2)
 
@@ -82,22 +92,26 @@ m3 <- lm(logHPD~poly(Scope_width, 3), data=dat)
 AIC(m0, m1, m2, m3)
 summary(m1) 
 
+# Standardized Pearson correlation
+cor(scale(dat$logHPD), scale(dat$Scope_width))
+
 # Predictions of the best model
 newdata <- data.frame(Scope_width =seq(1, 6, by=0.1))
 preds <- predict(m1, newdata=newdata, se.fit=TRUE )
 # Plotting the predictions
-lines(newdata$Scope_width, preds$fit, col="red", lwd=2)
+lines(newdata$Scope_width, preds$fit, col=my.red, lwd=2)
 lines(newdata$Scope_width, preds$fit + preds$se.fit , 
-      col="red", lwd=1, lty=2)
+      col=my.red, lwd=1, lty=2)
 lines(newdata$Scope_width, preds$fit - preds$se.fit , 
-      col="red", lwd=1, lty=2)
+      col=my.red, lwd=1, lty=2)
 
 ##############################################################
 ##### Panel C - HPD vs # of specialized applications #########
 ##############################################################
 
 plot(log10(HPD) ~ jitter(Scope_special, factor=0.5), 
-     data=dat, col=rgb(0,0,0,alpha=0.5) ,
+     data=dat, col=rgb(0,0,0,alpha=0.3) , 
+     pch=19, las=1, #col="darkgrey",
      xlab="# specialized applications", 
      ylab=expression(paste(log[10], " HPD"))   )
 mtext("C", adj=-0.14, font=2)
