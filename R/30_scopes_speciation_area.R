@@ -12,6 +12,14 @@ library(ggplot2)
 library(metacom)
 library(bipartite)
 
+# DEFINING GGPLOT-LIKE COLORS
+gg_color_hue <- function(n) {
+  hues = seq(15, 375, length = n + 1)
+  hcl(h = hues, l = 65, c = 100)[1:n]
+}
+my.red <- gg_color_hue(4)[1]
+my.blue <- gg_color_hue(4)[3]
+
 
 traits_sheet <- read_excel("data/Linux_traits.xlsx")
 
@@ -56,12 +64,12 @@ traits_nonglobal %>%
   ggplot(aes(x = cum_a, y = cum_n)) + 
   scale_y_log10() +
   scale_x_log10() +
-  theme_classic() +
+  theme_bw() +
   #theme(plot.title=element_text(hjust=-0.05)) +
   #ggtitle('A') + 
   stat_smooth(method = "glm",  method.args = list(family = "poisson"), 
-              color = "red") + 
-  geom_point(shape=1) +
+              color = my.red) + 
+  geom_point(shape=19, color="darkgrey") +
   xlab("Population (millions)") +
   ylab("Number of diversification events")
 
