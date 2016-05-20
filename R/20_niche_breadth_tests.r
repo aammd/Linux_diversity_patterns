@@ -35,6 +35,23 @@ gg_color_hue <- function(n) {
 my.red <- gg_color_hue(4)[1]
 my.blue <- gg_color_hue(4)[3]
 
+# COUNT NUMBER OF APPLICATION CATEGORIES
+library(plyr)
+Scope <- dat$Scope
+a <- Scope[1]
+
+scope.parser <- function(scope.string)
+{
+  parsed <- strsplit(scope.string, ",")
+  parsed <- gsub(pattern=" ", x=parsed[[1]], replacement="")
+  return(parsed)  
+}
+
+splitted.list <- lapply(X=Scope, FUN=scope.parser)
+splitted.data <- unlist(splitted.list)
+categories <- unique(sort(splitted.data))
+categories.for.paper <- paste(categories[], collapse=", ")
+categories.for.paper
 
 # ---------------------------------------------------------------------
 # THE FIGURE
