@@ -34,16 +34,6 @@ distros %>%
 #   select(-dur) %>% 
 #   View
 
-## let's work with just decendents of ubuntu
-
-
-
-
-
-## maybe need to join the earliest and the latest together? not sure
-## let's first try just combining things in oder 
-
-
 # make it a function ----------------------------------
 
 ## split up a clade based on parents
@@ -56,6 +46,11 @@ all_trees <- distros$clade %>%
   unique %>% 
   as.list %>% 
   map(create_total_phylogeny, distros)
+
+
+
+# figures ---------------------------------------------
+
 
 pdf("figures/all_distros.pdf")
 par(cex = 0.3)
@@ -79,17 +74,6 @@ walk2(all_trees,
       ~ writeLines(.x, paste0("data/", .y, ".newick")))
 
 
-
-master %>% plot_tree(show.tip.label = FALSE)
-
-%>% 
-  map(~ print(str_replace(master, .$Name, newicks$result[[.$Name]]))) %>% 
-  map(nchar)
-
-
-newicks$result %>% 
-  as.list %>% 
-  walk(plot_tree)
 
 newicks$result %>% 
   keep(~ nchar(.) > 20)
