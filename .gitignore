@@ -5,3 +5,5 @@
 data/gldt
 *.bz2
 .httr-oauth
+
+.~*
