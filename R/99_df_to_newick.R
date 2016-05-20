@@ -5,6 +5,8 @@ library(readr)
 library(picante)
 library(purrr)
 
+source("R/40_df_to_newick_functions.R")
+
 distros <- read_csv("data/distro_time.csv")
 
 ## fix goddamned parentheses
@@ -13,7 +15,6 @@ distros <- distros %>%
   mutate(Name = gsub("\\(|\\)", ".", Name),
          Parent = gsub("\\(|\\)", ".", Parent))
 
-glimpse(distros)
 
 ## what are the extant ones?
 
@@ -21,68 +22,25 @@ distros %>%
   filter(Stop == max(Stop))
 
 ## ok first step, get their branch lengths
-
-distros %>% 
-  mutate(dur = as.numeric(Stop - Start)) %>% 
-  arrange(dur) %>% 
-  filter(Stop == max(Stop)) %>% 
-  arrange(Parent) %>% 
-  mutate(tip = paste0(Name, ":", dur)) %>% 
-  select(-dur) %>% 
-  View
+# 
+# distros %>% 
+#   mutate(dur = as.numeric(Stop - Start)) %>% 
+#   arrange(dur) %>% 
+#   filter(Stop == max(Stop)) %>% 
+#   arrange(Parent) %>% 
+#   mutate(tip = paste0(Name, ":", dur)) %>% 
+#   select(-dur) %>% 
+#   View
 
 ## let's work with just decendents of ubuntu
 
-ubuntus <- distros %>% 
-  filter(clade == "Debian") %>% 
-  filter(Parent == "Ubuntu" | Name == "Ubuntu") %>% 
-  mutate(dur = as.numeric(Stop - Start),
-         age = as.numeric(max(Stop) - Start)) %>% 
-  # filter(Stop == max(Stop)) %>% 
-  arrange(Parent) %>% 
-  mutate(tip = paste0(Name, ":", dur))
 
-ubuntus %>% 
-  arrange(dur) %>% 
-  View
+
 
 
 ## maybe need to join the earliest and the latest together? not sure
 ## let's first try just combining things in oder 
 
-df_to_newick <- function(dataset, parentdata){
-  tips <- dataset %>% 
-    arrange(age)
-  
-  assertthat::assert_that(nrow(parentdata) == 1)
-  ## actually put the parent here, with the same branch length as the youngest tip
-  ## or maybe more correctly, age of parent - duration of parent , then subtract that number from age of youngest tip.
-  ## base:shortest
-  parentlife <- parentdata$age - parentdata$dur
-  phylo <- paste0(parentdata$Name, ":", tips$age[[1]] - parentlife)
-  
-  if (nrow(tips) == 1){
-    phylo <- paste0(phylo, ",", tips$tip[[1]]) %>% 
-      paste0("(", ., "):", parentdata$age - tips$age[[nrow(tips)]])
-  } else if (nrow(tips) > 1) {
-    for (i in 1:(nrow(tips) - 1)) {
-      phylo <- paste0(phylo, ",", tips$tip[[i]]) %>% 
-        paste0("(", ., "):", tips$age[[i + 1]] - tips$age[[i]])
-    }
-    phylo <- paste0("(", phylo, ",", tips$tip[[nrow(tips)]], "):", parentdata$age - tips$age[[nrow(tips)]]) 
-    ## then right here, at the end , add : followed by parent age - age (not duration) of oldest offspring
-  }
-  
-  return(phylo)
-}
-
-plot_tree <- function(dat, ...){
-  
-  dat %>% 
-    paste0(";") %>% 
-    read.tree(text = .) %>% 
-    plot(., ...)
-}
 
 ## if you limit to just extant this looks like the Debian symbol! how awesome
 pdf(file = "figures/ubuntu_tree.pdf", height = 10, width = 7)
@@ -162,11 +120,20 @@ all_trees <- distros$clade %>%
   as.list %>% 
   map(create_total_phylogeny, distros)
 
-pdf("all_distros.pdf")
+pdf("figures/all_distros.pdf")
+par(cex = 0.3)
 walk2(all_trees, 
       distros$clade %>% 
         unique, 
       ~ plot_tree(.x, main = .y, show.tip.label = FALSE))
+dev.off()
+
+pdf("figures/all_distros_labels.pdf")
+par(cex = 0.5)
+walk2(all_trees, 
+      distros$clade %>% 
+        unique, 
+      ~ plot_tree(.x, main = .y, show.tip.label = TRUE))
 dev.off()
 
 walk2(all_trees, 
