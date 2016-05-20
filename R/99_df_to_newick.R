@@ -47,16 +47,15 @@ tips <- ubuntus %>%
   filter(Parent != "Debian")
 
 ## base:shortest
-phylo <- "Ubuntu:113"
+phylo <- tips$tip[[1]]
 
-for (i in 1:(nrow(tips) - 1)) {
+for (i in 2:(nrow(tips) - 1)) {
   phylo <- paste0(phylo, ",", tips$tip[[i]]) %>% 
     paste0("(", ., "):", tips$age[[i + 1]] - tips$age[[i]])
 }
 
-test <- paste0(phylo, "UBUNTU;")
-# cat(phylo, file = "ubuntu.tre", sep = "\n")
-# ubuntu_tree <- read.tree("ubuntu.tre")
+test <- paste0("(", phylo, ")", ";")
+
 
 mytree <- read.tree(text = test)
 ## if you limit to just extant this looks like the Debian symbol! how awesome
