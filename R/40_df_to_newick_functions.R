@@ -33,3 +33,57 @@ plot_tree <- function(dat, ...){
     read.tree(text = .) %>% 
     plot(., ...)
 }
+
+
+create_total_phylogeny <- function(stem, .distros){
+  split_distros <- .distros %>% 
+    filter(clade == stem) %>% 
+    mutate(dur = as.numeric(Stop - Start),
+           age = as.numeric(max(Stop) - Start)) %>% 
+    # filter(Stop == max(Stop)) %>% 
+    arrange(Parent, age) %>% 
+    mutate(tip = paste0(Name, ":", dur)) %>% 
+    split(., .$Parent)
+  
+  
+  
+  ## are all parents extant?
+  
+  split_parents <- .distros %>% 
+    filter(Name %in% (split_distros %>% names)) %>% 
+    mutate(dur = as.numeric(Stop - Start),
+           age = as.numeric(max(Stop) - Start)) %>% 
+    # filter(Stop == max(Stop)) %>% 
+    arrange(Parent, age) %>% 
+    mutate(tip = paste0(Name, ":", dur)) %>% 
+    split(., .$Name)
+  
+  stopifnot(identical(names(split_distros), names(split_parents)))
+  
+  ### try it out ######
+  newicks <- split_distros%>% 
+    map2(split_parents, safely(df_to_newick)) %>% 
+    transpose %>% 
+    simplify_all() %>% 
+    compact 
+  
+  ### fill in the rents
+  
+  replacers <- split_parents %>% 
+    sort_by("age") %>% 
+    rev %>% 
+    .[-1] 
+  
+  if (stem == "Redhat") {
+    stem <- "Red Hat"
+  }
+  master <- newicks$result[[stem]]
+  
+  for (x in replacers) {
+    master <- str_replace(master, paste0(",",x$Name), paste0(",",newicks$result[[x$Name]]))
+  }
+  
+  return(master)
+  
+}
+

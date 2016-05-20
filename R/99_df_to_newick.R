@@ -4,6 +4,8 @@ library(dplyr)
 library(readr)
 library(picante)
 library(purrr)
+library(stringr)
+
 
 source("R/40_df_to_newick_functions.R")
 
@@ -42,77 +44,12 @@ distros %>%
 ## let's first try just combining things in oder 
 
 
-## if you limit to just extant this looks like the Debian symbol! how awesome
-pdf(file = "figures/ubuntu_tree.pdf", height = 10, width = 7)
-plot(mytree, label.offset = 0.5, cex = 0.6, 
-     edge.color = "darkred", type="phylogram", edge.width = 2)
-dev.off()
-
-plot(mytree, type = "unrooted", label.offset = 0.5, cex = 0.6, 
-     edge.color = "darkred", edge.width = 2)
-
-
-
 # make it a function ----------------------------------
 
 ## split up a clade based on parents
 ## do that for each parent
 
 
-library(stringr)
-
-
-create_total_phylogeny <- function(stem, .distros){
-  split_distros <- .distros %>% 
-    filter(clade == stem) %>% 
-    mutate(dur = as.numeric(Stop - Start),
-           age = as.numeric(max(Stop) - Start)) %>% 
-    # filter(Stop == max(Stop)) %>% 
-    arrange(Parent, age) %>% 
-    mutate(tip = paste0(Name, ":", dur)) %>% 
-    split(., .$Parent)
-  
-  
-  
-  ## are all parents extant?
-  
-  split_parents <- .distros %>% 
-    filter(Name %in% (split_distros %>% names)) %>% 
-    mutate(dur = as.numeric(Stop - Start),
-           age = as.numeric(max(Stop) - Start)) %>% 
-    # filter(Stop == max(Stop)) %>% 
-    arrange(Parent, age) %>% 
-    mutate(tip = paste0(Name, ":", dur)) %>% 
-    split(., .$Name)
-  
-  stopifnot(identical(names(split_distros), names(split_parents)))
-  
-  ### try it out ######
-  newicks <- split_distros%>% 
-    map2(split_parents, safely(df_to_newick)) %>% 
-    transpose %>% 
-    simplify_all() %>% 
-    compact 
-  
-  ### fill in the rents
-  
-  replacers <- split_parents %>% 
-    sort_by("age") %>% 
-    rev %>% 
-    .[-1] 
-  
-  if (stem == "Redhat") {
-    stem <- "Red Hat"
-  }
-  master <- newicks$result[[stem]]
-  
-  for (x in replacers) {
-    master <- str_replace(master, paste0(",",x$Name), paste0(",",newicks$result[[x$Name]]))
-  }
-  
-  return(master)
-  
-}
 
 
 all_trees <- distros$clade %>% 
@@ -141,8 +78,6 @@ walk2(all_trees,
         unique, 
       ~ writeLines(.x, paste0("data/", .y, ".newick")))
 
-
-create_total_phylogeny("Redhat", distros)
 
 
 master %>% plot_tree(show.tip.label = FALSE)
