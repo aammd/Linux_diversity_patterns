@@ -1,4 +1,4 @@
-# Author: Andrew M McDonald
+#' # Author: A Andrew M MacDonald
 # email: a.a.m.macdonald@gmail.com
 
 # read data, packages ---------------------------------
@@ -9,6 +9,8 @@ library(readr)
 library(tidyr)
 library(ggplot2)
 
+## read in time data as character, then convert to dates via
+## lubridate
 gldt_time <- read_csv("data/distro_time.csv",
                       col_types = "ccccc") %>% 
   mutate(Start = ymd(Start),
@@ -17,25 +19,23 @@ gldt_time <- read_csv("data/distro_time.csv",
 
 # calculate start time --------------------------------
 
-## what was the start time:
-gldt_time$Start %>% min
-## ok so from 1993-01-01
-
-test <- ymd("2000-01-01")
-
+## convert dates to an "interval" format
 gldt_int <- gldt_time %>% 
   mutate(int = interval(Start, Stop))
 
+# create a vector of months from 2000 to 2013
+monthly_21c <- ymd("2000-01-01") + months(0:(12*13))
 
-monthly_21c <- test + months(0:(12*13))
-
+# function which counts how many distros are "alive" (that
+# is, between their Start and Stop dates) at any given date.
 is_distro <- function(dataset){
   function(s) sum(s %within% dataset$int)
 } 
 
+# create the vector of "extant" distros for every month
 n_dist_time <- sapply(monthly_21c, is_distro(gldt_int))
 
-
+# place these values into a data frame. 
 data_frame(time = monthly_21c,
            ndist = n_dist_time) %>% 
   ggplot(aes(x = time, y = ndist)) +
