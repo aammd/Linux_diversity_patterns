@@ -96,7 +96,7 @@ Debian,Kiwi,Ubuntu,2007-10-01,2013-01-01
 Debian,Geubuntu,Ubuntu,2007-09-13,2013-01-01
 Debian,Greenie,Ubuntu,2007-09-14,2013-01-01
 Debian,Ubuntulite,Ubuntu,2007-09-01,2013-01-01
-Debian,Fluxbuntu,Ubuntu,2007-10-01,2013-01-01
+Debian,Fluxbuntu,Ubuntu,2007-01-01,2013-01-01
 Debian,Mythbuntu,Ubuntu,2007-06-04,2013-01-01
 Debian,Moblin,Ubuntu,2007-07-01,2008-08-01
 Debian,gOS,Ubuntu,2007-11-01,2009-01-03
@@ -109,14 +109,14 @@ Debian,Ubuntu eee,Ubuntu,2008-06-09,2013-01-01
 Debian,Leeenux,Ubuntu eee,2009-10-17,2013-01-01
 Debian,Maryan,Ubuntu,2008-08-01,2013-01-01
 Debian,MoonOS,Ubuntu,2008-08-01,2013-01-01
-Debian,Zorin OS,Ubuntu,2008-10-01,2013-01-01
+Debian,Zorin OS,Ubuntu,2008-01-01,2013-01-01
 Debian,INX,Ubuntu,2008-10-05,2013-01-01
 Debian,eBox,Ubuntu,2008-10-18,2013-01-01
 Debian,CAINE,Ubuntu,2008-10-25,2013-01-01
 Debian,Newtoos,Ubuntu,2008-11-13,2013-01-01
 Debian,XBMC Live,Ubuntu,2008-11-15,2013-01-01
 Debian,Vibuntu,Ubuntu,2008-12-06,2013-01-01
-Debian,A/V,Ubuntu,2009-02-01,2013-01-01
+Debian,AV,Ubuntu,2009-02-01,2013-01-01
 Debian,Qimo,Ubuntu,2009-02-18,2013-01-01
 Debian,Monomaxos,Ubuntu,2009-03-01,2013-01-01
 Debian,Lubuntu,Ubuntu,2009-04-13,2013-01-01
@@ -245,7 +245,7 @@ SLS,pQui,Slackware,2005-07-01,2013-01-01
 SLS,Slackintosh,Slackware,2005-09-29,2013-01-01
 SLS,Sauver,Slackware,2006-01-01,2013-01-01
 SLS,Voltalinux,Slackware,2006-06-01,2008-06-01
-SLS,How-Tux,Slackware,2006-10-01,2008-03-01
+SLS,How-Tux,Slackware,2006-01-01,2008-03-01
 SLS,Bluewhite64,Slackware,2006-10-04,2013-01-01
 SLS,Absolute,Slackware,2006-10-22,2013-01-01
 SLS,Wifislax,Slackware,2006-12-21,2013-01-01
@@ -268,7 +268,7 @@ Redhat,Caldera,Red Hat,1996-02-01,2002-11-19
 Redhat,Redmond,Caldera,2001-12-08,2005-06-15
 Redhat,LinuxPPC,Red Hat,1997-04-01,2001-01-01
 Redhat,UltraPenguin,Red Hat,1997-07-01,1998-12-01
-Redhat,Conectiva,Red Hat,1997-10-01,2005-01-24
+Redhat,Conectiva,Red Hat,1997-01-01,2005-01-24
 Redhat,Buhawi,Red Hat,1997-12-21,2004-09-18
 Redhat,PLD,Red Hat,1998-01-01,2013-01-01
 Redhat,Turbolinux,Red Hat,1998-06-01,2013-01-01
@@ -276,12 +276,12 @@ Redhat,Mandrake,Red Hat,1998-07-23,2013-01-01
 Redhat,Demolinux,Mandrake,1998-09-01,2002-07-01
 Redhat,Virtual,Mandrake,2001-09-16,2002-05-03
 Redhat,ALT,Mandrake,2001-03-25,2013-01-01
-Redhat,PCLinuxOS,Mandrake,2003-10-01,2013-01-01
+Redhat,PCLinuxOS,Mandrake,2003-01-01,2013-01-01
 Redhat,TinyMe,PCLinuxOS,2006-11-01,2013-01-01
 Redhat,Granular,PCLinuxOS,2006-12-30,2013-01-01
 Redhat,Garuda,PCLinuxOS,2011-04-13,2013-01-01
 Redhat,Phinx,PCLinuxOS,2011-08-01,2013-01-01
-Redhat,SAM,Mandrake,2003-10-01,2013-01-01
+Redhat,SAM,Mandrake,2003-01-01,2013-01-01
 Redhat,blackPanther,Mandrake,2003-12-01,2013-01-01
 Redhat,OpenSLS,Mandrake,2003-12-22,2007-12-30
 Redhat,Unity,Mandrake,2009-12-10,2013-01-01
@@ -297,7 +297,7 @@ Redhat,Yellow Dog,Red Hat,1999-03-08,2013-01-01
 Redhat,Vine,Red Hat,1999-03-28,2013-01-01
 Redhat,Red Flag,Red Hat,1999-08-01,2013-01-01
 Redhat,Armed,Red Hat,1999-09-05,2002-01-01
-Redhat,Immunix,Red Hat,1999-10-01,2003-11-27
+Redhat,Immunix,Red Hat,1999-01-01,2003-11-27
 Redhat,Kondara,Red Hat,1999-11-11,2002-07-15
 Redhat,Linpus,Red Hat,2000-01-28,2013-01-01
 Redhat,ELX,Red Hat,2000-02-01,2006-01-01
@@ -330,7 +330,7 @@ Redhat,NST,Fedora Core,2003-12-01,2013-01-01
 Redhat,Momonga,Fedora Core,2004-08-06,2013-01-01
 Redhat,MythDora,Fedora Core,2005-06-01,2013-01-01
 Redhat,AsianLinux,Fedora Core,2005-07-02,2007-04-29
-Redhat,FoX,Fedora Core,2004-10-01,2006-04-01
+Redhat,FoX,Fedora Core,2004-01-01,2006-04-01
 Redhat,Ekaaty,Fedora Core,2006-08-15,2013-01-01
 Redhat,Amahi,Fedora Core,2007-01-01,2013-01-01
 Redhat,Vixta,Fedora Core,2007-09-20,2013-01-01
