@@ -32,12 +32,18 @@ is_distro <- function(dataset){
   function(s) sum(s %within% dataset$int)
 } 
 
-# create the vector of "extant" distros for every month
-n_dist_time <- sapply(monthly_21c, is_distro(gldt_int))
+make_extant_df <- function(dataset,
+                           timevec = monthly_21c){
+  # create the vector of "extant" distros for every month
+  time_ext <- sapply(timevec, is_distro(dataset))
+  # place these values into a data frame. 
+  
+  data_frame(time = timevec,
+             ndist = time_ext) 
+}
 
-# place these values into a data frame. 
-data_frame(time = monthly_21c,
-           ndist = n_dist_time) %>% 
+
+make_extant_df(gldt_int) %>% 
   ggplot(aes(x = time, y = ndist)) +
   geom_point() + geom_line() 
 
@@ -50,11 +56,8 @@ gldt_extinct <- gldt_int %>%
   mutate(int = interval(Start, Stop))
 
 
-n_dist_time_ext <- sapply(monthly_21c, is_distro(gldt_extinct))
 
-
-data_frame(time = monthly_21c,
-           ndist = n_dist_time_ext)  %>% 
+make_extant_df(gldt_extinct) %>% 
   ggplot(aes(x = time, y = ndist)) +
   geom_point() + geom_line() 
 
@@ -74,6 +77,7 @@ make_timeline <- function(.gldt_time){
   
   ## counting extinctions
   gldt_extinctions <- .gldt_time %>% 
+    ## don't include ones still alive
     filter(Stop < ymd("2013-01-01")) %>% 
     mutate(int = interval(Stop, ymd("2013-01-01")))
   
