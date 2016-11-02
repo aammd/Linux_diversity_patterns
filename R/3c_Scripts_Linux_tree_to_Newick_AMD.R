@@ -12,11 +12,11 @@ library(stringr)
 library(ape)
 
 
-source("R/3b_Functions_Linux_tree_to_newick.R")
+source("R/3b_Functions_Linux_tree_to_newick_AMD.R")
 
 distros <- read_csv("data/distro_time.csv")
 
-## fix goddamned parentheses
+## parentheses
 
 distros <- distros %>% 
   mutate(Name = gsub("\\(|\\)", ".", Name),
@@ -87,6 +87,7 @@ pdf("figures/Figure_3A.pdf", width=10, height=5)
   }
 dev.off()
 
+## plot all trees
 
 pdf("figures/all_distros_labels.pdf")
 par(cex = 0.5)
@@ -95,6 +96,8 @@ walk2(all_trees,
         unique, 
       ~ plot_tree(.x, main = .y, show.tip.label = TRUE))
 dev.off()
+
+## generate all the newick files
 
 walk2(all_trees, 
       distros$clade %>% 

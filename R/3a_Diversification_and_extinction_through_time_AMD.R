@@ -11,7 +11,7 @@ library(ggplot2)
 
 ## read in time data as character, then convert to dates via
 ## lubridate
-gldt_time <- read_csv("../data/distro_time.csv",
+gldt_time <- read_csv("data/distro_time.csv",
                       col_types = "ccccc") %>% 
   mutate(Start = ymd(Start),
          Stop = ymd(Stop))
