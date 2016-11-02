@@ -11,7 +11,7 @@ library(ggplot2)
 
 ## read in time data as character, then convert to dates via
 ## lubridate
-gldt_time <- read_csv("data/distro_time.csv",
+gldt_time <- read_csv("../data/distro_time.csv",
                       col_types = "ccccc") %>% 
   mutate(Start = ymd(Start),
          Stop = ymd(Stop))
@@ -32,6 +32,8 @@ is_distro <- function(dataset){
   function(s) sum(s %within% dataset$int)
 } 
 
+## a function which applies is_distro over the whole time
+## vector, then spits out the answer in a data frame
 make_extant_df <- function(dataset,
                            timevec = monthly_21c){
   # create the vector of "extant" distros for every month
@@ -47,7 +49,6 @@ make_extant_df(gldt_int) %>%
   ggplot(aes(x = time, y = ndist)) +
   geom_point() + geom_line() 
 
-lines(monthly_21c, n_dist_time)
 
 ## what is the distribution of long dead things?
 
