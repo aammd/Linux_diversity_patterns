@@ -91,6 +91,12 @@ library(vegan) # for beta diversity indices
   Deb.data <- ldply(Deb.paclists) %>%
                     data.frame(. , ones=rep(1, nrow(.))  ) %>%
                     spread(data=., key=.id, value=ones, fill=0)
+  
+  ## Write out debian trait data ---
+  
+  readr::write_csv(Deb.data, "data/debian_trait_data.csv")    
+  
+  
     
   rownames(Deb.data) <- Deb.data$package
   Deb.data <- Deb.data[,-1]
@@ -98,6 +104,8 @@ library(vegan) # for beta diversity indices
   Deb.data[1:10, 1:10]
   
   image(as.matrix(Deb.data))
+  
+
 
 # ------------------------------------------------------------------------------
 # create beta diversity distance matrices based on binary trait matrices

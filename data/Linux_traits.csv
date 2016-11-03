@@ -1,0 +1,276 @@
+Distribution,HPD,Rank,Packages,Scope_width,Scope_special,Scope,Country,Parent,Parent_simple
+Mint,3070,1,2347,3,1,"Beginners, Desktop, Live Medium",Ireland,Debian,Debian
+Debian,1952,2,57991,3,1,"Desktop, Live Medium, Server",Global,Debian,Debian
+Ubuntu,1685,3,1913,4,1,"Beginners, Desktop, Server, Live Medium",Isle of Man,Debian,Debian
+openSUSE,1346,4,5748,4,2,"Desktop, Server, Live Medium, Raspberry Pi",Germany,Independent,Other
+Fedora,1148,5,1451,3,1,"Desktop, Server, Live Medium",USA,Fedora,Red Hat
+Manjaro,1049,6,9300,3,1,"Desktop, Live Medium, Netbooks","Austria, Germany, France",Arch,Arch
+Mageia,983,7,4181,3,1,"Desktop, Live Medium, Server",France,Mandriva,Mandriva
+CentOS,888,8,3724,3,1,"Desktop, Live Medium, Server",USA,"Fedora, Red Hat",Red Hat
+Arch,801,9,8559,3,2,"Desktop, Raspberry Pi, Server",Canada,Arch,Arch
+Android-x86,731,10,NA,2,0,"Desktop, Live Medium",USA,Android,Other
+Zorin,696,11,2359,2,0,"Desktop, Live Medium",Ireland,Debian,Debian
+LXLE,666,12,1907,3,1,"Desktop, Live Medium, Old Computers",USA,Debian,Debian
+PCLinuxOS,662,13,2167,3,1,"Beginners, Desktop, Live Medium",USA,Mandriva,Mandriva
+Kali,621,14,2667,5,4,"Data Rescue, Forensics, Live Medium, Raspberry Pi, Security",Switzerland,Debian,Debian
+elementary,618,15,1535,3,1,"Beginners, Desktop, Live Medium",USA,Debian,Debian
+deepin,581,16,1443,1,0,Desktop,China,Debian,Debian
+Puppy,580,17,1311,4,2,"Desktop, Old Computers, Live Medium, Netbooks",Australia,Independent,Other
+Ubuntu MATE,568,18,1860,4,2,"Beginners, Desktop, Live Medium, Raspberry Pi",United Kingdom,Debian,Debian
+Lubuntu,557,19,1213,3,2,"Live Medium, Netbooks, Old Computers",France,Debian,Debian
+Lite,509,20,1552,3,1,"Beginners, Desktop, Live Medium",New Zealand,Debian,Debian
+antiX,471,21,1372,2,1,"Live Medium, Old Computers",Greece,Debian,Debian
+Slackware,468,22,1337,2,1,"Desktop, Server",USA,Independent,Other
+Simplicity,455,23,691,3,1,"Desktop, Live Medium, Netbooks",UK,Puppy,Puppy
+FreeBSD,442,24,25143,4,3,"Desktop, Firewall, Raspberry Pi, Server",USA,Independent,Other
+Tails,413,25,1838,3,2,"Live Medium, Privacy, Security",Ireland,Debian,Debian
+Xubuntu,409,26,1536,1,0,Desktop,Isle of Man,Debian,Debian
+Antergos,407,27,839,2,0,"Desktop, Live Medium",Spain,Arch,Arch
+Cub,404,28,NA,2,0,"Desktop, Live Medium",UK,Debian,Debian
+Netrunner,402,29,2711,3,1,"Beginners, Desktop, Live Medium",Germany,Debian,Debian
+Black Lab,397,30,2084,3,1,"Beginners, Desktop, Live Medium",USA,Debian,Debian
+Bodhi,376,31,1457,5,3,"Chromebooks, Desktop, Live Medium, Old Computers, Raspberry Pi",USA,Debian,Debian
+Sabayon,375,32,1658,3,1,"Beginners, Desktop, Live Medium",Italy,Gentoo,Gentoo
+KaOS,365,33,1010,2,0,"Desktop, Live Medium",USA,Independent,Other
+Solus,364,34,445,2,0,"Desktop, Live Medium",Ireland,Independent,Other
+Q4OS,361,35,1075,1,0,Desktop,Germany,Debian,Debian
+SteamOS,357,36,2485,1,1,Gaming,USA,Debian,Debian
+Kubuntu,336,37,2007,3,1,"Desktop, Server, Live Medium",Isle of Man,Debian,Debian
+Peppermint,318,38,1269,3,1,"Desktop, Live Medium, Netbooks",USA,Debian,Debian
+Robolinux,307,39,2562,3,1,"Beginners, Desktop, Live Medium",USA,Debian,Debian
+SparkyLinux,306,40,2903,2,0,"Desktop, Live Medium",Poland,Debian,Debian
+Tiny Core,296,41,NA,4,2,"Desktop, Live Medium, Old Computers, Raspberry Pi",USA,Independent,Other
+Red Hat,285,42,4687,2,1,"Desktop, Server",USA,Fedora,Red Hat
+PC-BSD,284,43,25033,2,1,"Desktop, Server",USA,FreeBSD,BSD
+ClearOS,283,44,718,4,3,"Desktop, Firewall, Security, Server",New Zealand,Red Hat,Red Hat
+Gentoo,281,45,12957,3,2,"Desktop, Server, Source-based",USA,Independent,Other
+Ultimate,276,46,3412,2,0,"Desktop, Live Medium",USA,Debian,Debian
+ArchBang,273,47,486,2,0,"Desktop, Live Medium",Canada,Arch,Arch
+KNOPPIX,273,48,3862,1,0,Live Medium,Germany,Debian,Debian
+Korora,268,49,2956,3,1,"Beginners, Desktop, Live Medium",Australia,Fedora,Red Hat
+4MLinux,266,50,309,2,0,"Desktop, Live Medium",Poland,Independent,Other
+MakuluLinux,263,51,2693,2,0,"Desktop, Live Medium",South Africa,Debian,Debian
+ReactOS,263,52,NA,3,1,"Desktop, Old Computers, Live Medium",Russia,Independent,Other
+ROSA,249,53,2453,2,0,"Desktop, Live Medium",Russia,Independent,Other
+Vector,245,54,879,2,1,"Desktop, Old Computers",Canada,Slackware,Slackware
+Ubuntu Studio,244,55,2451,3,1,"Desktop, Live Medium, Multimedia",USA,Debian,Debian
+Ubuntu GNOME,240,56,1759,2,0,"Desktop, Live Medium",Isle of Man,Debian,Debian
+Alpine,234,57,307,4,4,"Firewall, Server, Security, Telephony",Norway,Independent,Other
+BackBox,232,58,2079,5,4,"Data Rescue, Forensics, Privacy, Security, Live Medium",Italy,Debian,Debian
+wattOS,227,59,1246,4,2,"Desktop, Live Medium, Netbooks, Old Computers",USA,Debian,Debian
+Chakra,215,60,1031,2,0,"Desktop, Live Medium",Germany,Arch,Arch
+0Linux,206,61,1557,3,2,"Desktop, Multimedia, Server",France,Independent,Other
+DragonFly,205,62,22736,3,1,"Desktop, Live Medium, Server",USA,FreeBSD,BSD
+CoreOS,204,63,NA,1,1,Server,USA,Gentoo,Gentoo
+OpenMandriva,202,64,2164,3,1,"Desktop, Live Medium, Raspberry Pi",France,Independent,Other
+GhostBSD,200,65,812,2,0,"Desktop, Live Medium",Canada,FreeBSD,BSD
+Pinguy,199,66,2526,3,2,"Beginners, Desktop, Netbooks",UK,Debian,Debian
+NixOS,194,67,11150,4,2,"Desktop, Education, Live Medium, Server",Netherlands,Independent,Other
+OpenELEC,191,68,NA,2,2,"Multimedia, Raspberry Pi",Switzerland,Independent,Other
+Scientific,187,69,3883,5,3,"Desktop, High Performance Computing, Live Medium, Scientific, Server",USA,Red Hat,Red Hat
+Mangaka,186,70,1962,2,0,"Desktop, Live Medium",Austria,Debian,Debian
+Voyager,181,71,1891,2,0,"Desktop, Live Medium",France,Debian,Debian
+HandyLinux,180,72,1592,4,2,"Beginners, Desktop, Live Medium, Old Computers",France,Debian,Debian
+Clonezilla,178,73,499,1,1,Specialist,Taiwan,Debian,Debian
+OpenBSD,177,74,9296,2,2,"Security, Server",Canada,Independent BSD,BSD
+BlackArch,174,75,2561,3,2,"Live Medium, Security, Forensics",USA,Arch,Arch
+Neptune,172,76,2315,2,0,"Desktop, Live Medium",Germany,Debian,Debian
+SolydXK,172,77,2399,3,1,"Desktop, Live Medium, Raspberry Pi",Netherlands,Debian,Debian
+Ubuntu Kylin,169,78,1941,2,0,"Desktop, Live Medium",China,Debian,Debian
+siduction,167,79,1961,2,0,"Desktop, Live Medium",Germany,Debian,Debian
+GParted,164,80,538,3,2,"Disk Management, Data Rescue, Live Medium",USA,Debian,Debian
+Calculate,162,81,1440,4,2,"Desktop, Live Medium, Server, Source-based",Russia,Gentoo,Gentoo
+Absolute,161,82,1026,2,1,"Desktop, Old Computers",USA,Slackware,Slackware
+Oracle,160,83,4690,1,1,Server,USA,Red Hat,Red Hat
+Tanglu,160,84,2328,2,0,"Desktop, Live Medium",Germany,Debian,Debian
+Parsix,155,85,1886,2,0,"Desktop, Live Medium",Iran,Debian,Debian
+Elive,153,86,1982,1,0,Live Medium,Belgium,Debian,Debian
+Salix,153,87,758,2,0,"Desktop, Live Medium",Europe,Stackware,Slackware
+Emmabuntüs,152,88,3065,4,2,"Beginners, Desktop, Live Medium, Old Computers",France,Debian,Debian
+Univention,152,89,1806,1,1,Server,Germany,Debian,Debian
+SmartOS,149,90,NA,2,1,"Specialist, Live Medium",USA,Solaris,Solaris
+Trisquel,148,91,1993,4,2,"Free Software, Desktop, Live Medium, Education",Spain,Debian,Debian
+SliTaz,147,92,234,4,2,"Desktop, Live Medium, Old Computers, Raspberry Pi",Switzerland,Independent,Other
+Solaris,147,93,1699,2,2,"Server, UNIX",USA,Independent,Other
+AV Linux,146,94,2640,3,0,"Desktop, Live Medium, Multimedia",Canada,Debian,Debian
+Porteus,144,95,758,1,0,Live Medium,Ireland,Slackware,Slackware
+Zenwalk,144,96,1024,2,0,"Desktop, Live Medium",France,Slackware,Slackware
+Wifislax,142,97,1597,2,1,"Security, Live Medium",Spain,Slackware,Slackware
+ExTiX,139,98,1436,2,0,"Desktop, Live Medium",Sweeden,Debian,Debian
+Quirky,139,99,1613,3,1,"Desktop, Old Computers, Live Medium",Australia,Independent,Other
+Semplice,137,100,1223,2,0,"Desktop, Live Medium",Italy,Debian,Debian
+AUSTRUMI,123,101,483,3,1,"Data Rescue, Desktop, Live Medium",Latvia,Stackware,Slackware
+Qubes,118,102,1060,2,1,"Desktop, Security",USA,Fedora,Red Hat
+LinuxConsole,117,103,340,4,2,"Desktop, Gaming, Live Medium, Old Computers",France,Independent,Other
+NetBSD,116,104,10395,3,2,"Desktop, Raspberry Pi, Server",USA,BSD Independent,BSD
+Raspbian,116,105,1145,1,1,Raspberry Pi,USA,Debian,Debian
+LFS,106,106,689,2,2,"Source-based, Education",Canada,Independent,Other
+pfSense,104,107,NA,2,1,"Firewall, Live Medium",USA,"FreeBSD, m0n0wall",BSD
+IPFire,103,108,465,1,1,Firewall,Germany,Independent,Other
+Rockstor,103,109,551,1,1,Network Attached Storage,USA,"Fedora, CentOS",Red Hat
+NuTyX,99,110,1355,1,0,Desktop,Switzerland,"LFS, CRUX",Other
+ALT,97,111,37568,4,2,"Desktop, Education, Live Medium, Server",Russia,Independent,Other
+FreeNAS,97,112,NA,1,1,Network Attached Storage,France,FreeBSD,BSD
+MidnightBSD,93,113,1406,1,0,Desktop,USA,FreeBSD,BSD
+MiniNo,92,114,1315,3,2,"Live Medium, Netbooks, Old Computers",Spain,Debian,Debian
+SUSE,92,115,4330,2,1,"Desktop, Server",USA,openSUSE,openSUSE
+CRUX,90,116,315,4,3,"Desktop, Raspberry Pi, Server, Source-based",Sweden,Independent,Other
+FuguIta,90,117,107,1,0,Live Medium,Japan,OpenBSD,BSD
+Pisi,89,118,830,1,0,Desktop,Turkey,Independent,Other
+TurnKey,89,119,303,1,1,Server,USA,Debian,Debian
+OpenIndiana,87,120,1014,3,1,"Desktop, Live Medium, UNIX",UK,Solaris,Solaris
+Point,85,121,1681,2,0,"Desktop, Live Medium",Russia,Debian,Debian
+Slackel,85,122,2155,2,0,"Desktop, Live Medium",Greece,Slackware,Slackware
+SystemRescue,85,123,469,2,1,"Data Rescue, Live Medium",France,Gentoo,Gentoo
+Parted Magic,84,124,NA,3,2,"Data Rescue, Disk Management, Live Medium",USA,Independent,Other
+Ubuntu DP,81,125,2721,6,4,"Beginners, Live Medium,Desktop, Education, Gaming, Server",Ukraine,Debian,Debian
+Connochaet,79,126,726,2,2,"Free Software, Old Computers",Germany,Slackware,Slackware
+Porteus Kiosk,76,127,218,2,1,"Live Medium, Specialist",Ireland,Gentoo,Gentoo
+2XOS,75,128,NA,1,1,Thin Client,Malta,Debian,Debian
+ChaletOS,74,129,1874,3,1,"Beginners, Desktop, Live Medium",Serbia,Debian,Debian
+Mythbuntu,73,130,1537,2,1,"Live Medium, MythTV",USA,Debian,Debian
+CAINE,72,131,2656,2,1,"Forensics, Live Medium",Italy,Debian,Debian
+ZevenOS,72,132,1779,2,0,"Desktop, Live Medium",Germany,Debian,Debian
+Berry,71,133,602,1,0,Live Medium,Japan,Red Hat,Red Hat
+Bridge,71,134,1085,2,0,"Desktop, Live Medium",USA,Arch,Arch
+Proxmox,71,135,431,2,2,"Server, Specialist",Austria,Debian,Debian
+Void,71,136,5587,3,1,"Desktop, Live Medium, Raspberry Pi",Spain,Independent,Other
+KolibriOS,70,137,NA,4,2,"Desktop, Old Computers, Live Medium, Netbooks",Russia,Independent,Other
+Untangle,70,138,1092,2,2,"Firewall, Server",USA,Debian,Debian
+Kwort,69,139,374,1,0,Desktop,Argentina,Crux,Other
+UberStudent,69,140,2571,4,2,"Beginners, Desktop, Education, Live Medium",USA,Debian,Debian
+Legacy,68,141,134,3,1,"Desktop, Live Medium, Old Computers",Australia,Puppy,Puppy
+Parabola,68,142,228,3,2,"Free Software, Desktop, Server",Chile,Arch,Arch
+Chapeau,67,143,2023,2,0,"Desktop, Live Medium",UK,Fedora,Red Hat
+NethServer,67,144,468,1,1,Server,Italy,CentOS,Red Hat
+Funtoo,66,145,40065,3,2,"Desktop, Server, Source-based",USA,Gentoo,Gentoo
+LinuxBBQ,66,146,1036,2,0,"Desktop, Live Medium",China,Debian,Debian
+LPS,66,147,NA,3,2,"Live Medium, Privacy, Security",USA,Thinstation,Other
+blackPanther,65,148,1303,2,0,"Desktop, Live Medium",Hungary,Mandriva,Mandriva
+NAS4Free,65,149,NA,1,1,Network-Attached Storage,Netherlands,FreeBSD,BSD
+OpenMediaVault,65,150,348,1,1,Network Attached Storage,Germany,Debian,Debian
+Rescatux,65,151,633,1,1,Data Rescue,Spain,Debian,Debian
+APODIO,64,152,3064,2,1,"Multimedia, Live Medium",France,Debian,Debian
+Webconverger,64,153,623,2,1,"Live Medium, Specialist",Singapore,Debian,Debian
+Zentyal,64,154,1280,2,2,"Security, Server",Spain,Debian,Debian
+LuninuX,63,155,2483,2,0,"Desktop, Live Medium",USA,Debian,Debian
+WM Live,63,156,1541,2,0,"Desktop, Live Medium",Spain,Debian,Debian
+openmamba,60,157,1622,4,2,"Desktop, Live Medium,Netbooks, Server",Italy,Independent,Other
+Pentoo,60,158,1747,2,1,"Live Medium, Security",Switzerland,Gentoo,Gentoo
+SymphonyOS,60,159,846,2,0,"Desktop, Live Medium",USA,Debian,Debian
+Haiku,59,160,NA,2,0,"Desktop, Live Medium",USA,Independent,Other
+Plamo,59,161,1514,2,1,"Desktop, Server",Japan,Slackware,Slackware
+SuperX,59,162,1915,3,1,"Beginners, Desktop, Live Medium",India,Debian,Debian
+Devil,58,163,590,3,2,"Firewall, Server, Live Medium",USA,Independent,Other
+MINIX,58,164,4284,1,1,Education,Netherlands,Independent,Other
+Finnix,57,165,464,2,1,"Data Rescue, Live Medium",USA,Debian,Debian
+RebeccaBlackOS,57,166,1394,2,0,"Desktop, Live Medium",USA,Debian,Debian
+Edubuntu,56,167,2357,2,1,"Education, Live Medium",Isle of Man,Debian,Debian
+Parrot,56,168,3210,3,2,"Forensics, Live Medium, Security",Italy,Debian,Debian
+Plop,56,169,425,4,2,"Data Rescue, Desktop, Live Medium, Raspberry Pi",Austria,Independent,Other
+Toutou,56,170,441,3,2,"Beginners, Desktop, Old Computers",France,Puppy,Puppy
+SME Server,53,171,872,1,1,Server,USA,Red Hat,Red Hat
+URIX,53,172,1477,3,2,"Forensics, Live DVD, Security",Bulgaria,openSUSE,openSUSE
+XStreamOS,53,173,NA,2,1,"Desktop, Server",Italy,Solaris,Solaris
+Frugalware,52,174,4115,1,0,Desktop,Hungary,Independent,Other
+Lunar,52,175,3369,1,1,Source-based,USA,Independent,Other
+Bio-Linux,51,176,3057,2,1,"Live Medium, Scientific",UK,Debian,Debian
+KXStudio,51,177,2022,3,1,"Desktop, Live Medium, Multimedia",Portugal,Debian,Debian
+Musix,51,178,1783,3,2,"Free Software, Live Medium, Multimedia",Argentina,Debian,Debian
+Baruwa,50,179,647,1,1,Server,South Africa,Red Hat,Red Hat
+KANOTIX,50,180,1683,2,0,"Desktop, Live Medium",Germany,Debian,Debian
+Pardus,50,181,2613,2,0,"Desktop, Live Medium",Turkey,Debian,Debian
+Skolelinux,50,182,6185,3,2,"Desktop, Education, Thin Client",Norway,Debian,Debian
+BlankOn,49,183,1508,2,0,"Desktop, Live Medium",Indonesia,Debian,Debian
+Leeenux,49,184,1514,2,1,"Live Medium, Netbooks",Serbia,Debian,Debian
+Linpus,49,185,1369,3,1,"Desktop, Live Medium, Netbooks",Taiwan,Cinnamon,Other
+BOSS,48,186,1959,4,2,"Desktop, Education, Live Medium, Server",India,Debian,Debian
+DEFT,48,187,1931,2,1,"Live Medium, Forensics",Italy,Debian,Debian
+Endian,48,188,420,1,1,Firewall,Italy,Red Hat,Red Hat
+NST,47,189,2637,2,1,"Live Medium, Security",USA,Red Hat,Red Hat
+Peach OSI,47,190,2499,2,0,"Desktop, Live Medium",USA,Debian,Debian
+Rocks Cluster,47,191,2831,2,2,"Clusters, High Performance Computing",USA,Fedora,Red Hat
+Runtu,47,192,1219,3,1,"Desktop, Live Medium, Netbooks",Russia,Debian,Debian
+MirOS,46,193,NA,2,2,"Security, Server",Germany,OpenBSD,BSD
+Nanolinux,46,194,NA,2,0,"Desktop, Live Medium",Germany,Tiny Core,Other
+PoliArch,46,195,985,2,1,"Data Rescue, Live Medium",Italy,Arch,Arch
+SalentOS,46,196,1478,2,0,"Desktop, Live Medium",Italy,Debian,Debian
+Vinux,46,197,1983,1,1,Specialist,United Kingdom,Debian,Debian
+Vine,45,198,NA,2,1,"Desktop, Server",Japan,Independent,Other
+Oz Unity,44,199,2731,3,1,"Beginners, Desktop, Live Medium",Australia,Debian,Debian
+REMnux,44,200,1360,2,2,"Security, Specialist",USA,Debian,Debian
+AsteriskNOW,43,201,633,2,2,"Specialist, Telephony",USA,Fedora,Red Hat
+SMS,43,202,799,2,1,"Live Medium, Server",Greece,Slackware,Slackware
+Turbolinux,43,203,640,2,1,"Desktop, Server",Japan,Independent,Other
+BLAG,42,204,1258,3,1,"Desktop, Free Software, Live CD",UK,Fedora,Red Hat
+Exe,42,205,965,2,0,"Desktop, Live Medium",UK,Debian,Debian
+GoboLinux,42,206,347,3,1,"Desktop, Live Medium, Source-based",Brazil,Independent,Other
+IPCop,42,207,196,1,1,Firewall,USA,LFS,Other
+LliureX,42,208,2575,2,1,"Education, Live Medium",Spain,Debian,Debian
+Madbox,42,209,874,1,0,Desktop,Belgium,Debian,Debian
+OSMC,42,210,345,1,1,Raspberry Pi,UK,"Debian, Raspbian",Debian
+Rebellin,42,211,1834,2,0,"Desktop, Live Medium",India,Debian,Debian
+VyOS,42,212,401,1,1,Firewall,Global,Debian,Debian
+Exherbo,41,213,41013,3,2,"Desktop, Server, Source-based",Denmark,Independent,Other
+Kwheezy,41,214,2962,3,1,"Beginners, Desktop, Live Medium",United Kingdom,Debian,Debian
+kademar,40,215,1483,2,0,"Desktop, Live Medium",Spain,Arch,Arch
+RISC,40,216,NA,1,1,Raspberry Pi,UK,Independent,Other
+Sophos,40,217,NA,1,1,Firewall,Germany,Independent,Other
+Stella,40,218,1243,2,0,"Desktop, Live Medium",Romania,Red Hat,Red Hat
+T2,40,219,NA,2,2,"Source-based, Desktop",Germany,ROCK,Other
+Zeroshell,40,220,NA,3,2,"Firewall, Live Medium, Server",Italy,Independent,Other
+Thinstation,39,221,NA,1,1,Thin Client,New Zealand,CRUX,Other
+UPR,39,222,1580,2,1,"Live Medium, Privacy",Germany,Debian,Debian
+VortexBox,39,223,450,1,1,Multimedia,USA,Fedora,Red Hat
+DoudouLinux,38,224,1168,2,1,"Education, Live CD",France,Debian,Debian
+Elastix,38,225,595,2,2,"Specialist, Telephony",Ecuador,Red Hat,Red Hat
+OPNsense,38,226,NA,2,1,"Firewall, Live Medium",Netherlands,FreeBSD,BSD
+Baltix,36,227,1920,2,0,"Desktop, Live Medium",Lithuania,Debian,Debian
+OLPC,36,228,NA,2,1,"Education, Live Medium",USA,Red Hat,Red Hat
+paldo,36,229,1269,2,1,"Data Rescue, Live Medium",Switzerland,Independent,Other
+Bardinux,35,230,1133,2,0,"Desktop, Live Medium",Spain,Debian,Debian
+Caixa Mágica,35,231,2401,1,0,Desktop,Portugal,Debian,Debian
+Centrych,35,232,1761,2,0,"Desktop, Live Medium",USA,Debian,Debian
+Guadalinex,35,233,1451,3,1,"Desktop, Education, Live Medium",Spain,Debian,Debian
+Pidora,35,234,916,1,1,Raspberry Pi,Canada,Fedora,Red Hat
+Smoothwall,35,235,NA,1,1,Firewall,UK,Independent,Other
+Source Mage,35,236,NA,2,1,"Desktop, Source-based",USA,Independent,Other
+Springdale,35,237,4820,2,1,"Desktop, Server",USA,Red Hat,Red Hat
+UHU-Linux,35,238,1298,2,0,"Desktop, Live Medium",Hungary,Independent,Other
+Greenie,34,239,1735,2,0,"Desktop, Live Medium",Slovakia,Debian,Debian
+Linuxfx,34,240,2115,2,0,"Desktop, Live Medium",Brazil,Debian,Debian
+MAX,34,241,2838,3,1,"Desktop, Education, Live Medium",Spain,Debian,Debian
+Miracle,34,242,NA,1,1,Server,Japan,Red Hat,Red Hat
+Securepoint,34,243,NA,1,1,Firewall,Germany,Independent,Other
+Bicom,33,244,NA,2,2,"Specialist, Telephony",France,Gentoo,Gentoo
+Canaima,33,245,1137,2,0,"Desktop, Live DVD",Venezuela,Debian,Debian
+Fermi,33,246,4113,2,1,"Desktop, Server",USA,Red Hat,Red Hat
+Hanthana,33,247,2454,2,0,"Desktop, Live Medium",Sri Lanka,Red Hat,Red Hat
+LinHES,33,248,610,2,1,"Live Medium, MythTV",USA,Arch,Arch
+OpenLX,33,249,2517,2,0,"Desktop, Live Medium",India,Debian,Debian
+Grml,32,250,997,1,0,Live Medium,Austria,Debian,Debian
+Karoshi,32,251,1228,2,1,"Education, Live Medium",United Kingdom,Debian,Debian
+Openwall,32,252,222,2,2,"Server, Security",Global,Red Hat,Red Hat
+PLD,32,253,NA,2,1,"Desktop, Server",Poland,Independent,Other
+SELKS,32,254,882,2,1,"Live Medium, Security",France,Debian,Debian
+Ulteo,32,255,936,1,1,Server,France,Debian,Debian
+Volumio,32,256,642,1,1,Raspberry Pi,Italy,Debian,Debian
+NexentaStor,31,257,NA,2,2,"Specialist, UNIX",USA,Solaris,Solaris
+Chitwanix,30,258,2201,2,0,"Desktop, Live Medium",Nepal,Debian,Debian
+eZeY,30,259,1397,3,1,"Desktop, Education, Live Medium",Portugal,Red Hat,Red Hat
+LinEx,30,260,1565,2,1,"Education, Desktop",Spain,Debian,Debian
+Overclockix,30,261,1238,1,0,Live Medium,USA,Debian,Debian
+PelicanHPC,30,262,2214,2,1,"Clusters, Live Medium",Algeria,Debian,Debian
+Sonar,30,263,930,3,1,"Desktop, Live Medium, Assistive",USA,Manjaro,Arch
+GuixSD,28,264,3251,2,1,"Education, Live Medium",USA,Independent,Other
+SuliX,28,265,1911,1,1,Education,Hungary,Fedora,Red Hat
+Omoikane,27,266,NA,1,0,Desktop,Japan,Debian,Debian
+Metamorphose,26,267,2767,1,0,Desktop,Brazil,Debian,Debian
+PrimTux,22,268,1776,2,1,"Desktop, Education",France,Debian,Debian
+AgiliaLinux,21,269,790,2,1,"Desktop, Server",Russia,Independent,Other
+AbulÉdu,15,270,2797,4,3,"Education, Live Medium, Server, Thin Client",NA,NA,NA
+Whonix,15,271,1239,3,2,"Desktop, Privacy, Security",Germany,Debian,Debian
+BSDRP,9,272,50,2,2,"Firewall, Router",France,FreeBSD,BSD
+Arya,6,273,459,3,2,"Desktop, Server, Source-based",India,LFS,Other
+Lakka,6,274,NA,3,3,"Gaming, Multimedia, Raspberry Pi",France,OpenELEC,Other
+B2D,3,275,3126,2,0,"Desktop, Live Medium",Taiwan,Debian,Debian
