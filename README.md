@@ -1,3 +1,6 @@
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.164445.svg)](https://doi.org/10.5281/zenodo.164445)
+
+
 # From computer operating systems to biodiversity: co-emergence of ecological and evolutionary patterns
 
 **Authors of the code:** *A. Andrew M. MacDonald (AMD),  Gabriel E. García-Peña (GGP), Petr Keil (PK)*
