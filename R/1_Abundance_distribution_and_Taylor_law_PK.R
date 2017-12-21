@@ -1,75 +1,137 @@
-# ---------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+# Description: Here we plot & analyze the species-abundance distributions,
+# and the Taylor's power law.
+
 # Author: Petr Keil
 # pkeil@seznam.cz
-# ---------------------------------------------------------------------
-
-this.dir <- dirname(parent.frame(2)$ofile)
+# ------------------------------------------------------------------------------
 
 # DATA AND PACKAGES
 
 library(plyr)
 library(vegan)
+library(ggplot2)
+library(gridExtra)
 
-dat.yearly <- read.csv("data/linux_yearly_data.csv")
-dat.recent <- read.csv("data/popularity_last_clean_12.csv")
+# LOAD LINUXCOUNTER DATA
 
-# TEST DIFFERNET RANK ABUNDANCE MODELS
-vegan::radfit(dat.recent$HPD)
+dat.lct <- read.csv("../data/data_added_after_review/linuxcounter_2017_11_27.csv") 
+# remove Android and 'other' categories
+dat.lct <- dat.lct[dat.lct$Distro != "Android",]
+dat.lct <- dat.lct[dat.lct$Distro != "other",]
+dat.lct <- data.frame(dat.lct, Source="LinuxCounter", 
+                      Rank = max(rank(dat.lct$Machines, 
+                                      ties.method="first")) + 1 - rank(dat.lct$Machines, ties.method="first"))
 
-# DEFINING GGPLOT-LIKE COLORS that will be used in the plots
-gg_color_hue <- function(n) {
-  hues = seq(15, 375, length = n + 1)
-  hcl(h = hues, l = 65, c = 100)[1:n]
-}
-my.red <- gg_color_hue(4)[1]
-my.blue <- gg_color_hue(4)[3]
+# LOAD DISTROWATCH DATA
 
-# ------------------------------------------------------------------
-# FIGURE 1 ---------------------------------------------------------
-# ------------------------------------------------------------------
-
-# Initialize .pdf output
-pdf(file="figures/Figure_1.pdf", width=10, height=3.5)
-par(mfrow=c(1,3), bty="l")
-
-##############################################
-##### Panel A - Rank-abundance curve #########
-##############################################
-
-plot(sort(dat.recent$HPD, decreasing=TRUE), 
-     xlab="Rank", ylab="HPD", pch=19, col="darkgrey", las=1)
-mtext("A", adj=-0.18,  font=2)
-
-# plot the theoretical log-normal distribution
-N=length(dat.recent$HPD)
-draws <- matrix(0, nrow=N, ncol=1000)
-for(i in 1:ncol(draws))
-{
-  draws[,i]  <- sort(rlnorm(N, meanlog=mean(log(dat.recent$HPD)), 
-                               sdlog=sqrt(var(log(dat.recent$HPD)))))
-}
-means <- sort(rowMeans(draws), decreasing=TRUE)
-lines(means, col=my.red, cex=0.8, lwd=1.5, lty=1)
-
-#############################################
-##### Panel B - Abundance histogram #########
-#############################################
-
-hist(dat.recent$HPD, col="darkgrey", main="", 
-     xlab=expression(paste("HPD")), freq=FALSE , breaks=40,
-     border = "lightgrey", las=1, ylim=c(0, 0.007))
-mtext("B", adj=-0.18, font=2)
+dat.yearly <- read.csv("../data/linux_yearly_data.csv")
+dat.recent <- read.csv("../data/popularity_last_clean_12.csv")
+dat.recent <- data.frame(dat.recent, Source="DistroWatch", 
+                         Rank = max(rank(dat.recent$HPD, 
+                                         ties.method="first")) + 1 - rank(dat.recent$HPD, ties.method="first"))
+names(dat.recent) <- names(dat.lct)
 
 
-# plot the theoretical log-normal distribution
-x <- seq(0, max(dat.recent$HPD))
-y <- dlnorm(x, meanlog=mean(log(dat.recent$HPD)), sdlog=sqrt(var(log(dat.recent$HPD))))
-lines(x, y, col=my.red, lwd=1.5)
+# LOAD WIKIMEDIA DATA
 
-#############################################
-##### Panel C - Taylor's Power Law  #########
-#############################################
+dat.squid.1 <- read.csv("../data/data_added_after_review/squid_2010_2011.csv")
+dat.squid.2 <- read.csv("../data/data_added_after_review/squid_2011_2014.csv")
 
+# remove the weird distros that seem to be duplicates
+dat.squid.2 <- dat.squid.2[dat.squid.2$Distro != "Linux Xubuntu",]
+dat.squid.2 <- dat.squid.2[dat.squid.2$Distro != "Linux openSUSE",]
+
+
+################################################################################
+# 1. SPECIES-ABUNDANCE DISTRIBUTIONS (SADs)
+################################################################################
+
+# some prelimiary explorations and plots
+
+ggplot(data=rbind(dat.recent, dat.lct), aes(x=log10(Machines))) +
+       geom_histogram(aes(fill=Source)) +
+       theme_bw()
+
+ggplot(data=rbind(dat.recent, dat.lct), aes(x=log10(Rank), y=log10(Machines))) +
+       geom_point(aes(colour=Source)) + 
+       theme_bw()
+
+
+
+# RANK-ABUNDANCE CURVES
+
+source("0_logseries_estimation.r")
+
+# LinuxCounter data --------
+
+X <- dat.lct$Machines
+XX <- fit.distr(X)
+X.1 <- data.frame(Rank=length(X) + 1 - rank(X, ties.method="first"), X)
+
+# linear plot
+LC.plot <- ggplot(X.1, aes(x=Rank, y=X)) +
+           geom_point() +
+           geom_line(data=XX, aes(x=Rank, y=Mean, colour=Model)) +
+           labs(x="Rank", y="no. of machines", 
+                title="(a)", 
+                subtitle="Source: LinuxCounter") +
+           theme_bw() +
+           theme(legend.position = c(0.7, 0.7)) 
+
+# log-log plot
+LC.plot.log <- ggplot(X.1, aes(x=log10(Rank), y=log10(X))) +
+  geom_point() +
+  geom_line(data=XX, aes(x=log10(Rank), y=log10(Mean), colour=Model)) +
+  labs(x=expression(paste(log[10], " Rank")), 
+       y=expression(paste(log[10], " no. of machines")), 
+       title="(b)", 
+       subtitle="Source: LinuxCounter") +
+  ylim(0, 5) +
+  theme_bw() +
+  theme(legend.position='none')
+
+LC.plot.log
+
+
+# DistroWatch data --------
+
+X <- dat.recent$Machines
+XX <- fit.distr(X)
+X.1 <- data.frame(Rank=length(X) + 1 - rank(X, ties.method="first"), X)
+
+# linear plot
+DW.plot <- ggplot(X.1, aes(x=Rank, y=X)) +
+  geom_point() +
+  geom_line(data=XX, aes(x=Rank, y=Mean, colour=Model)) +
+  labs(x="Rank", y="HPD", 
+       title="(c)", 
+       subtitle="Source: DistroWatch") +
+  theme_bw() +
+  theme(legend.position='none')
+
+# log-log plot
+DW.plot.log <- ggplot(X.1, aes(x=log10(Rank), y=log10(X))) +
+  geom_point() +
+  geom_line(data=XX, aes(x=log10(Rank), y=log10(Mean), colour=Model)) +
+  labs(x=expression(paste(log[10], " Rank")), 
+       y=expression(paste(log[10], " HPD")), 
+       title="(d)", subtitle="Source: DistroWatch") +
+  theme_bw() +
+  theme(legend.position='none')
+
+
+# export the plots to a file
+pdf("../figures/SADs.pdf", width=5, height=5)
+  grid.arrange(LC.plot, LC.plot.log, DW.plot, DW.plot.log, nrow=2, ncol=2)
+dev.off()
+
+
+################################################################################
+# 2. TAYLOR'S POWER LAW
+################################################################################
+
+# Prepare the Distrowatch data 
 dat <- data.frame(dat.yearly, Ones=rep(1, times=nrow(dat.yearly)))
 dat$Distribution <- as.character(dat$Distribution)
 
@@ -86,58 +148,74 @@ dat <- merge(dat, duration, by="Distribution")
 # > 10 years of duration
 dat.T <- dat[dat$Duration >= 10, ]
 
-# Temporal variances
-vars <- ddply(.data=dat.T,
-              .variables=.(Distribution),
-              .fun=summarize,
-              Var=var(H.P.D.))
+# Temporal means and variances in the three data sources
 
-# Temporal means
-means <- ddply(.data=dat.T,
-               .variables=.(Distribution),
-               .fun=summarize,
-               Mean=mean(H.P.D.))
+# Distrowatch
+DW <- ddply(.data=dat.T,
+            .variables=.(Distribution),
+            .fun=summarize,
+            Mean=mean(H.P.D.),
+            Var=var(H.P.D.),
+            Source = "DistroWatch")
 
-MV <- merge(means, vars, by="Distribution")
-nrow(MV)
+# Squid coutner
+SQ1 <- ddply(.data=dat.squid.1,
+            .variables=.(Distro),
+            .fun=summarize,
+            Mean=mean(Count),
+            Var=var(Count),
+            Source="Wikipedia 2010-2011")
 
-# Fit linear regression in log-log to estimate TPL slope
-TPL <- lm(log(Var) ~ log(Mean), data=MV)
-summary(TPL)
+# Squid counter
+SQ2 <- ddply(.data=dat.squid.2,
+             .variables=.(Distro),
+             .fun=summarize,
+             Mean=mean(Count),
+             Var=var(Count),
+             Source="Wikipedia 2012-2014")
 
-# Plot everything
+names(DW) = names(SQ1) 
 
-plot(log(Var) ~ log(Mean), data=MV, 
-     xlab=expression(paste(log, " Mean HPD")),
-     ylab=expression(paste(log, " Variance of HPD")), las=1,
-     col="darkgrey", pch=19)
-a <- round(coef(TPL)[1], 2)
-b <- round(coef(TPL)[2], 2)
-
-# add the regression line
-abline(TPL, lwd=1.5, col=my.blue)
-
-# Insert TPL equation
-legend("topleft", legend=paste("y = ", a, " + ", b, "x"), 
-  box.col=NA, text.col=my.blue, cex=1.2)
-
-mtext("C", adj=-0.18, font=2)
+Taylor <- rbind(DW, SQ1, SQ2)
 
 
-# Close the .pdf output
+# PLOT THE TAYLOR'S POWER LAW 
+
+T.plot <- ggplot(data=Taylor, aes(x=log10(Mean), y=log10(Var))) +
+  geom_abline(intercept=0.5, slope=1, col="grey", linetype=2) +
+  geom_abline(intercept=0.5, slope=2, col="grey", linetype=2) +
+  geom_smooth(aes(colour=Source), method="lm", se=FALSE, size=0.5) + 
+  geom_point(aes(colour=Source, shape=Source), size=2, alpha=0.6) +
+  labs(x = expression(paste(log[10], " Mean")),
+       y = expression(paste(log[10], " Variance")))+
+  theme_bw()
+
+# export the figure to a file
+pdf("../figures/Taylor.pdf", width=5, height=3.2)
+ print(T.plot)
 dev.off()
 
 
-### PLOT LOG-TRANSFORMED HISTOGRAM for inset
-pdf("figures/Figure_1_log_abund_inset.pdf", width=3, height=3)
-par(mai=c(0.8,0.1,0.1,0.1))
-hist(log(dat.recent$HPD), col="darkgrey", main="", 
-     xlab=expression(paste(log, " HPD")), freq=FALSE , breaks=20,
-     border = "lightgrey", las=1, axes=FALSE, ylab=NA)
-axis(side=1)
-# plot the theoretical log-normal distribution
-x <- seq(0, 9, by=0.1)
-y <- dnorm(x, mean=mean(log(dat.recent$HPD)), sd=sqrt(var(log(dat.recent$HPD))))
-lines(x, y, col=my.red, lwd=1.5)
-dev.off()
+# *-----------------------------------------------------------------------------
+# Get TPL parameter estimates using linear regression in a log-log space
+
+library(plyr)
+library(dplyr)
+
+# function that applies the linear regression model to each dataset in the 
+# X dataframe (produced above)
+my.lm <- function(X)
+{
+  summary(lm(log(Var) ~ log(Mean), data=X)  )
+}
+
+# apply the function
+dlply(.data=Taylor,
+      .variables = "Source",
+      .fun = my.lm)
+
+
+
+
+
 

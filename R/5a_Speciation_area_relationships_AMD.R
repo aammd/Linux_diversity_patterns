@@ -21,9 +21,9 @@ my.red <- gg_color_hue(4)[1]
 my.blue <- gg_color_hue(4)[3]
 
 
-traits_sheet <- read_excel("data/Linux_traits.xlsx")
+traits_sheet <- read_excel("../data/Linux_traits.xlsx")
 
-sizes <- read.csv("data/country_sizes.csv")
+sizes <- read.csv("../data/country_sizes.csv")
 
 # ok maybe we consider countries ----------------------
 
@@ -77,14 +77,14 @@ traits_nonglobal %>%
   #scale_x_log10() +
   theme_bw() +
   theme(plot.title=element_text(hjust=-0.05)) +
-  ggtitle('A') + 
+  ggtitle('(a)') + 
   stat_smooth(method = "glm",  method.args = list(family = "quasipoisson"), 
               color = my.red) + 
   geom_point(shape=19, color="darkgrey") +
   xlab("log Country human population") +
   ylab("# of diversification events")
 
-ggsave("figures/spec_pop.pdf", width = 4, height = 4)
+ggsave("../figures/spec_pop.pdf", width = 4, height = 4)
 
 
 for.glm <-  traits_nonglobal %>%
@@ -111,18 +111,18 @@ traits_nonglobal %>%
   #scale_x_log10() +
   theme_bw() +
   theme(plot.title=element_text(hjust=-0.05)) +
-  ggtitle('B') + 
+  ggtitle('(b)') + 
   stat_smooth(method = "glm",  method.args = list(family = "quasipoisson"), 
               color = my.red) + 
   geom_point(shape=19, color="darkgrey") +
   xlab("log Country area [km^2]") +
   ylab("")
 
-ggsave("figures/spec_area.pdf", width = 4, height = 4)
+ggsave("../figures/spec_area.pdf", width = 4, height = 4)
 
 
 system("
-    cd figures
+    cd ../figures
     # pdfcrop spec_area.pdf spec_area.pdf
     # pdfcrop spec_pop.pdf spec_pop.pdf
     pdfnup --nup 2x1 spec_pop.pdf spec_area.pdf --outfile hard_to_test.pdf

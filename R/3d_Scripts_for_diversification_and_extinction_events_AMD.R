@@ -1,4 +1,4 @@
-# Author: Andrew M McDonald
+# Author: Andrew M MacDonald
 # email: a.a.m.macdonald@gmail.com
 
 # -----------------------------------------------------
@@ -17,7 +17,6 @@ library(readr)
 library(tidyr)
 
 gldt <- read_csv("data/gldt/gldt.csv", skip = 22)
-
 
 ## blank rows indicate separations between chunks of data
 firstlines <- which(rowSums(is.na(gldt)) == ncol(gldt))
