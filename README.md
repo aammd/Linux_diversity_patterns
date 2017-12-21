@@ -1,3 +1,6 @@
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1120445.svg)](https://doi.org/10.5281/zenodo.1120445)
+
+
 # From computer operating systems to biodiversity: co-emergence of ecological and evolutionary patterns
 
 **Description:** This repository contains all data and R code that were used for a paper that looks for biodiversity patterns in the universe of GNU/Linux operating systems.
