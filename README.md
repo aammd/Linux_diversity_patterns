@@ -1,4 +1,4 @@
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.164445.svg)](https://doi.org/10.5281/zenodo.164445)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1120445.svg)](https://doi.org/10.5281/zenodo.1120445)
 
 
 # From computer operating systems to biodiversity: co-emergence of ecological and evolutionary patterns
