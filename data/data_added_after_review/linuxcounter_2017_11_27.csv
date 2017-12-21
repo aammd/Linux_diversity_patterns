@@ -1,0 +1,308 @@
+Distro,Machines
+Ubuntu ,39212
+Debian,28419
+SuSE Linux ,11149
+Fedora ,10069
+Slackware Linux ,9779
+Gentoo Linux ,7421
+Arch Linux ,4811
+CentOS ,4764
+Red Hat Linux ,4672
+Linux Mint ,3166
+Kubuntu ,2715
+Mandrake ,2644
+Mandriva ,2385
+unknown ,2167
+Android ,1372
+Xubuntu ,900
+PCLinuxOS ,681
+other ,485
+OpenWrt ,405
+Lubuntu ,354
+Mageia ,334
+Mepis ,295
+Knoppix ,260
+Maemo ,243
+Scientific Linux ,242
+Raspbian GNU/Linux ,225
+ALT Linux ,221
+IPCop ,220
+Linux From Scratch ,214
+Puppy Linux ,208
+PLD ,207
+Xandros ,207
+Conectiva ,204
+ManjaroLinux ,204
+Red Hat Enterprise ,200
+Sabayon ,196
+DIY ,188
+FreeBSD ,176
+SmoothWall ,176
+CrunchBang Linux ,153
+CyanogenMod ,110
+elementary OS ,97
+Kurumin ,95
+MintPPC ,94
+Mythbuntu ,92
+Sidux ,87
+Zenwalk ,81
+aptosid ,79
+Damn Small Linux ,79
+Backtrack ,78
+ClearOS ,76
+DD-WRT ,74
+ASPLinux ,66
+Pardus ,66
+Antergos ,64
+CRUX ,63
+Mandriva Linux ,63
+Crunchbang ,60
+SME server ,58
+OpenZaurus ,52
+VectorLinux ,51
+FREESCO ,50
+Bodhi ,49
+OpenELEC ,48
+Salix OS ,46
+Funtoo ,43
+Chakra ,41
+Kali ,40
+Ultimate Edition ,39
+Trisquel GNU/Linux ,33
+Easy Peasy ,32
+Endian Firewall Community ,32
+Slamd64 ,32
+Calculate Linux ,31
+IPFire ,28
+Kanotix ,28
+gNewSense ,27
+Zorin OS ,27
+Guadalinex ,26
+MEPIS Linux ,26
+Zentyal ,26
+JoliCloud ,23
+AntiX ,21
+Blankon ,20
+Chromium OS ,20
+IPCop Firewall ,20
+Elive ,19
+Exherbo ,19
+Meego ,19
+Sailfish OS ,18
+Android-x86 ,17
+BunsenLabs ,17
+LXLE ,17
+Oracle Linux ,17
+SliTaz GNULinux ,17
+Fuduntu ,16
+Vector Linux ,16
+Canaima GNU/Linux ,15
+DreamLinux ,14
+wrt54g-linux ,14
+Alpine Embedded Linux ,12
+geexbox ,12
+Netrunner ,12
+UHU-Linux ,12
+Voyage Linux ,12
+ArchBang ,11
+OpenEmbedded ,11
+uClinux ,11
+ARM Linux ,10
+Kurumin Linux ,10
+MontaVista Linux ,10
+Source Mage GNU/Linux ,10
+TA-Linux ,10
+Unity Linux ,10
+JULinux ,9
+Linpus linux ,9
+rPath Linux ,9
+Trixbox ,9
+AV Linux ,8
+Coyote Linux ,8
+floppyfw ,8
+LTSP ,8
+OpenMediaVault ,8
+Peppermint ,8
+Solus OS ,8
+Void ,8
+Asturix ,7
+LINVDR ,7
+Parabola GNU/Linux-libre ,7
+Poseidon Linux ,7
+Yoper ,7
+Gobolinux ,6
+GRML ,6
+openmoko ,6
+Qimo ,6
+wattOS ,6
+zeroshell ,6
+blackPanther OS ,5
+CCux ,5
+Debian Hardened ,5
+Devil-Linux ,5
+Linux Deepin ,5
+PCLinuxOS ,5
+Point Linux ,5
+RockLinux ,5
+SLAX-Live CD ,5
+thinstation ,5
+UberStudent ,5
+Ubuntu Satanic Edition ,5
+Vyatta ,5
+Yellow Dog ,5
+ABC GNU/Linux ,4
+Adriane Knoppix ,4
+BackBox Linux ,4
+Feather Linux ,4
+Fedora Jam ,4
+LEAF (Linux Embedded Appliance Firewall) ,4
+Lunar-Linux ,4
+Macpup ,4
+Momonga Linux ,4
+Paldo ,4
+QubesOS ,4
+Rocks Cluster Distribution ,4
+Siduction ,4
+Ubuntu Privacy Remix ,4
+Untangle Gateway ,4
+Voyager Live ,4
+Ångström ,3
+Aurora Sparc Project ,3
+CTKArch ,3
+Debox GNU/Linux ,3
+Jailbait ,3
+k12ltsp ,3
+Keldix ,3
+LinuxMCE ,3
+Mindi Linux ,3
+Nova ,3
+Tiny Core Linux ,3
+Tomato ,3
+TurboLinux ,3
+2-Disk Xwindow embedded Linux ,2
+64 Studio ,2
+ArtistX ,2
+AsteriskNOW ,2
+BU Linux ,2
+CAELinux ,2
+CensorNet ,2
+DoudouLinux ,2
+Engarde Secure Linux ,2
+Epidemic GNU/Linux ,2
+FIRE ,2
+Free-eos ,2
+Frugalware Linux ,2
+INX ,2
+KaOS ,2
+Kuki Linux ,2
+Linpus Linux Lite ,2
+Linux MLD ,2
+LinuxConsole ,2
+MACH BOOT ,2
+MakuluLinux ,2
+Mer ,2
+Morphix ,2
+Ojuba ,2
+openezx ,2
+OpenNA Linux ,2
+OpenPsion ,2
+Orange Linux ,2
+Parted Magic ,2
+PINGO ,2
+Semplice ,2
+sms ,2
+SolydXK ,2
+T2 ,2
+Tails ,2
+TinyME ,2
+Ubuntu Christian Edition ,2
+Univention Corporate Server (UCS) ,2
+Vine Linux ,2
+*-ZyX ,1
+Absolute Linux ,1
+AbulEdu ,1
+aLinux ,1
+amaroK Live CD ,1
+Annvix ,1
+Archie ,1
+AriOS ,1
+Asterisk Live! CD ,1
+B2D Linux ,1
+Bayanihan ,1
+Beyond Linux From Scratch (BLFS) ,1
+BLAG Linux and GNU ,1
+CloudUSB ,1
+ConnochaetOS ,1
+cooperative linux ,1
+Debian-Jr. ,1
+DEFT ,1
+Draco GNU/Linux ,1
+Dragon Linux ,1
+Dream Linux ,1
+EeeDora ,1
+Element HTPC ,1
+Embedded Debian ,1
+Emmabuntüs ,1
+Foresight Desktop Linux ,1
+GENDIST ,1
+Gibraltar ,1
+GNU Guix ,1
+gnuLinEx ,1
+Granular Linux ,1
+h3knix ,1
+HandyLinux ,1
+Hanthana ,1
+Jeoss Linux ,1
+K Linux ,1
+Kiwi Linux ,1
+Knoppix-STD ,1
+Korora ,1
+Kwort ,1
+KXStudio ,1
+Lightweight Portable Security ,1
+Lineox ,1
+LinHES ,1
+Linux Live ,1
+Linux MCE ,1
+LliureX ,1
+LORMALINUX ,1
+lxde-sid lite ,1
+Magic ,1
+Musix GNU+Linux ,1
+NethServer ,1
+Network Security Toolkit (NST) ,1
+openArtist ,1
+openmamba GNU/Linux ,1
+OpenMandriva ,1
+Parsix GNU/Linux ,1
+Pidora ,1
+PinguyOS ,1
+Pisi GNU/Linux ,1
+Plamo Linux ,1
+Pyramid ,1
+Q4OS ,1
+Quirky ,1
+Red Flag ,1
+ROSA ,1
+RTLinux ,1
+Saline OS ,1
+Sentry Firewall CD ,1
+Slack/390 ,1
+Sophos UTM ,1
+StartCom ,1
+SteamOS ,1
+systemrescuecd ,1
+Tango Studio ,1
+Tiny ,1
+Tinysofa Enterprise ,1
+Toorox ,1
+Topologi Linux ,1
+TurnKey Linux ,1
+ubermix ,1
+Ubuntu Rescue Remix ,1
+ubuntutrinux ,1
+USU Linux ,1
+VENENUX GNU/Linux ,1
+Virtual Linux ,1
+XO Software ,1
+ZevenOS ,1

@@ -1,18 +1,28 @@
-# ---------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+# Description: Here we calculate the relationships between niche breadth
+# and the three different measures of niche breadth.
+#
 # Author: Petr Keil
 # pkeil@seznam.cz
-# ---------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 # Loading the necessary libraries
+
 library(readxl)
+library(gridExtra)
+library(ggplot2)
 
 # Loading the trait data
-traits_sheet <- read_excel("data/Linux_traits.xlsx",
+
+traits_sheet <- read_excel("../data/Linux_traits.xlsx",
                            col_types = c("text", 
-                                         "numeric", "numeric", "numeric", 
+                                         "numeric", "numeric","numeric", "numeric", 
                                          "numeric", "numeric", 
                                          "text", "text", "text", "text"), 
                            na = c("NA"))
+
+# ------------------------------------------------------------------------------
+# DATA PROCESSING
 
 # For simplicity, we will work with a `dat` object
 dat <- traits_sheet
@@ -22,23 +32,18 @@ dat <- dat[is.na(dat$Packages) == FALSE,]
 dat <- dat[is.na(dat$Scope_width) == FALSE,]
 dat <- dat[is.na(dat$Scope_special) == FALSE,]
 
+hist(log10(dat$Packages))
+
 # do logarithms prior to analyses (sometimes it makes things easier)
 dat$logHPD <- log(dat$HPD)
 dat$logPackages <- log(dat$Packages)
 
-# DEFINING GGPLOT-LIKE COLORS
-gg_color_hue <- function(n) {
-  hues = seq(15, 375, length = n + 1)
-  hcl(h = hues, l = 65, c = 100)[1:n]
-}
-my.red <- gg_color_hue(4)[1]
-my.blue <- gg_color_hue(4)[3]
-
-# COUNT NUMBER OF APPLICATION CATEGORIES
+# count number of applications
 library(plyr)
 Scope <- dat$Scope
 a <- Scope[1]
 
+# function that parses the scopes from a string to a vector
 scope.parser <- function(scope.string)
 {
   parsed <- strsplit(scope.string, ",")
@@ -46,8 +51,11 @@ scope.parser <- function(scope.string)
   return(parsed)  
 }
 
+# apply the function to the scope data
 splitted.list <- lapply(X=Scope, FUN=scope.parser)
 splitted.data <- unlist(splitted.list)
+
+# extract the categories list that will be copy-pasted directly to the ms text
 categories <- unique(sort(splitted.data))
 categories.for.paper <- paste(categories[], collapse=", ")
 categories.for.paper
@@ -56,106 +64,113 @@ categories.for.paper
 # THE FIGURE
 # ---------------------------------------------------------------------
 
-# Initialize .pdf output
-pdf(file = "figures/Figure_2.pdf", width=10, height=3.5)
-par(mfrow = c(1,3), bty="l")
+####################################
+##### HPD vs # of PACKAGES #########
+####################################
 
-##############################################
-##### Panel A - HPD vs # of PACKAGES #########
-##############################################
+# remove distros with package lists that come from repositories (BSD, Debian)
+dat2 <- dat[dat$Packages < 8000,]
 
-plot(log(HPD)~log(Packages), 
-     data=dat, col=rgb(0,0,0,alpha=0.3) , pch=19,
-     xlab=expression(paste(log, " # packages")), 
-     ylab=expression(paste(log, " HPD")), las=1 )
-mtext("A", adj=-0.14, font=2)
+pA <- ggplot(dat2, aes(x=Packages, y=HPD)) +
+  geom_point(alpha=0.5) +
+  geom_smooth(method="glm", method.args=list(family="quasipoisson"), colour="red") +
+  scale_y_log10() + scale_x_log10() +
+  labs(title="(a)", 
+       x="no. of packages", 
+       y="HPD", 
+       subtitle="Source: DistroWatch") +
+  theme_bw()
+
+pD <- ggplot(dat2, aes(x=Packages, y=LinuxCounter)) +
+  geom_point(alpha=0.5) +
+  scale_y_log10() + scale_x_log10() +
+  labs(title="(d)", 
+       x="no. of packages", 
+       y="no. of machines", 
+       subtitle="Source: LinuxCounter") +
+  theme_bw()
 
 # Fitting the model
-m1 <- glm(HPD~logPackages, data = dat, family="quasipoisson")
-summary(m1)
+summary( glm(HPD~logPackages, data = dat2, family="quasipoisson"))
+summary( glm(LinuxCounter~logPackages, data = dat2, family="quasipoisson"))
+
 
 # Standardized Pearson correlation
-cor(scale(dat$logHPD), scale(dat$logPackages))
+cor(scale(dat2$logHPD), scale(dat2$logPackages))
 
-# Predictions of the model
-newdata <- data.frame(logPackages =seq(1, 11, by=0.1))
-preds <- predict(m1, newdata=newdata, se.fit=TRUE , scale="link" )
+########################################
+##### HPD vs # of applications #########
+########################################
 
-# Plotting the predictions
-lines(newdata$logPackages, preds$fit, col=my.red, lwd=2)
-lines(newdata$logPackages, preds$fit + preds$se.fit , 
-      col=my.red, lwd=1, lty=2)
-lines(newdata$logPackages, preds$fit - preds$se.fit , 
-      col=my.red, lwd=1, lty=2)
+pB <- ggplot(dat, aes(x=jitter(Scope_width, factor=0.5), y=HPD)) +
+  geom_point(alpha=0.5) +
+  geom_smooth(method="glm", method.args=list(family="quasipoisson"), colour="red") +
+  scale_y_log10() + 
+  labs(title="(b)", 
+       x="no. of applications", 
+       y="HPD", 
+       subtitle="Source: DistroWatch") +
+  theme_bw()
 
-##################################################
-##### Panel B - HPD vs # of applications #########
-##################################################
+pE <- ggplot(dat2, aes(x=jitter(Scope_width, factor=0.5), y=LinuxCounter)) +
+  geom_point(alpha=0.5) +
+ # geom_smooth(method="glm", method.args=list(family="quasipoisson"), colour="black") +
+  scale_y_log10() + #scale_x_log10() +
+  labs(title="(e)", 
+       x="no. of applications", 
+       y="no. of machines", 
+       subtitle="Source: LinuxCounter") +
+  theme_bw()
+pE
 
-plot(log(HPD) ~ jitter(Scope_width, factor=0.5), 
-     data=dat, col=rgb(0,0,0,alpha=0.3) , pch=19,
-     xlab="# applications", las=1,
-     ylab=expression(paste(log, " HPD"))  )
-mtext("B", adj=-0.14, font=2)
+# Fitting models
+summary( glm(HPD~Scope_width, data = dat, family="quasipoisson"))
+summary( glm(LinuxCounter~Scope_width, data = dat, family="quasipoisson"))
 
-# Fitting model
-m1 <- glm(HPD~Scope_width, data = dat, family="quasipoisson")
 
-summary(m1) 
 
 # Standardized Pearson correlation
 cor(scale(dat$logHPD), scale(dat$Scope_width))
 
-# Predictions of the best model
-newdata <- data.frame(Scope_width =seq(1, 6, by=0.1))
-preds <- predict(m1, newdata=newdata, se.fit=TRUE , scale="link")
-# Plotting the predictions
-lines(newdata$Scope_width, preds$fit, col=my.red, lwd=2)
-lines(newdata$Scope_width, preds$fit + preds$se.fit , 
-      col=my.red, lwd=1, lty=2)
-lines(newdata$Scope_width, preds$fit - preds$se.fit , 
-      col=my.red, lwd=1, lty=2)
+####################################################
+##### HPD vs # of specialized applications #########
+####################################################
 
-##############################################################
-##### Panel C - HPD vs # of specialized applications #########
-##############################################################
+pC <- ggplot(dat, aes(x=jitter(Scope_special, factor=0.5), y=HPD)) +
+  geom_point(alpha=0.5) +
+  #geom_smooth(method="glm", method.args=list(family="quasipoisson"), colour="black") +
+  scale_y_log10() + 
+  labs(title="(c)", 
+       x="no. of special applications", 
+       y="HPD", 
+       subtitle="Source: DistroWatch") +
+  theme_bw()
 
-plot(log(HPD) ~ jitter(Scope_special, factor=0.5), 
-     data=dat, col=rgb(0,0,0,alpha=0.3) , 
-     pch=19, las=1, #col="darkgrey",
-     xlab="# specialized applications", 
-     ylab=expression(paste(log, " HPD"))   )
-mtext("C", adj=-0.14, font=2)
+pF <- ggplot(dat, aes(x=jitter(Scope_special, factor=0.5), y=LinuxCounter)) +
+  geom_point(alpha=0.5) +
+  #geom_smooth(method="glm", method.args=list(family="quasipoisson"), colour="black") +
+  scale_y_log10() + 
+  labs(title="(f)", 
+       x="no. of special applications", 
+       y="no. of machines", 
+       subtitle="Source: LinuxCounter") +
+  theme_bw()
 
-# Fitting model 
-m1 <- glm(HPD~Scope_special, data = dat, family="quasipoisson")
 
-# Model selection using AIC
-summary(m1)
+# Fitting model s
+summary( glm(HPD~Scope_special, data = dat, family="quasipoisson"))
+summary( glm(LinuxCounter~Scope_special, data = dat, family="quasipoisson"))
 
-# Close the .pdf output
+
+
+#  -----------------------------------------------------------------------------
+
+# export the figure to a file
+pdf(file = "../figures/Figure_2.pdf", width=8, height=6)
+grid.arrange(pA, pB, pC, pD, pE, pF,  ncol=3, nrow=2)
 dev.off()
 
-# convert the .pdf to .png (only works on a Unix machine with 'convert' installed)
-system(" cd figures
-convert -density 150 Figure_2.pdf Figure_2.png
-")
 
-
-# ---------------------------------------------------------------
-# SIMPLE BOXPLOT SHOWING POPULARITY BY PARENT DISTRIBUTION
-# ---------------------------------------------------------------
-
-# Note: This is not directly relevant to the project, but
-#       I find it interesting nevertheless.
-
-pdf(file="figures/parents.pdf", width=15, height=5)
-boxplot(log10(HPD) ~ Parent_simple, data=dat, 
-        ylab="log_10 HPD", col="grey",
-        main="Popularity by parent distributions",
-        at=rank(tapply(dat$HPD, dat$Parent_simple, median)))
-abline(a=mean(log10(dat$HPD)), b=0, lty=1, col="grey")
-dev.off()
 
 
 

@@ -1,0 +1,169 @@
+"Date","Distro","Count"
+"2010-01-01","Linux CentOS",392
+"2010-01-01","Linux Debian",3301
+"2010-01-01","Linux Fedora",2731
+"2010-01-01","Linux Gentoo",830
+"2010-01-01","Linux Motor",33
+"2010-01-01","Linux Red Hat",495
+"2010-01-01","Linux SUSE",2666
+"2010-01-01","Linux Ubuntu",27024
+"2010-02-01","Linux CentOS",444
+"2010-02-01","Linux Debian",3373
+"2010-02-01","Linux Fedora",2818
+"2010-02-01","Linux Gentoo",845
+"2010-02-01","Linux Motor",32
+"2010-02-01","Linux Red Hat",563
+"2010-02-01","Linux SUSE",2771
+"2010-02-01","Linux Ubuntu",27933
+"2010-03-01","Linux Android",4981
+"2010-03-01","Linux CentOS",408
+"2010-03-01","Linux Debian",2695
+"2010-03-01","Linux Fedora",2537
+"2010-03-01","Linux Gentoo",748
+"2010-03-01","Linux Motor",28
+"2010-03-01","Linux Red Hat",516
+"2010-03-01","Linux SUSE",2532
+"2010-04-01","Linux Android",6307
+"2010-04-01","Linux CentOS",403
+"2010-04-01","Linux Debian",2395
+"2010-04-01","Linux Fedora",2476
+"2010-04-01","Linux Gentoo",755
+"2010-04-01","Linux Motor",29
+"2010-04-01","Linux Red Hat",488
+"2010-04-01","Linux SUSE",2510
+"2010-05-01","Linux Android",7518
+"2010-05-01","Linux CentOS",362
+"2010-05-01","Linux Debian",2285
+"2010-05-01","Linux Fedora",2357
+"2010-05-01","Linux Gentoo",739
+"2010-05-01","Linux Motor",26
+"2010-05-01","Linux Red Hat",425
+"2010-05-01","Linux SUSE",2487
+"2010-06-01","Linux Android",10244
+"2010-06-01","Linux CentOS",397
+"2010-06-01","Linux Debian",2375
+"2010-06-01","Linux Fedora",2483
+"2010-06-01","Linux Gentoo",776
+"2010-06-01","Linux Motor",28
+"2010-06-01","Linux Red Hat",470
+"2010-06-01","Linux SUSE",2601
+"2010-07-01","Linux Android",13709
+"2010-07-01","Linux CentOS",429
+"2010-07-01","Linux Debian",2060
+"2010-07-01","Linux Fedora",2571
+"2010-07-01","Linux Gentoo",744
+"2010-07-01","Linux Motor",42
+"2010-07-01","Linux Red Hat",499
+"2010-07-01","Linux SUSE",2556
+"2010-08-01","Linux Android",14962
+"2010-08-01","Linux CentOS",414
+"2010-08-01","Linux Debian",1995
+"2010-08-01","Linux Fedora",2370
+"2010-08-01","Linux Gentoo",716
+"2010-08-01","Linux Motor",33
+"2010-08-01","Linux Red Hat",492
+"2010-08-01","Linux SUSE",2507
+"2010-09-01","Linux Android",17940
+"2010-09-01","Linux CentOS",471
+"2010-09-01","Linux Debian",2007
+"2010-09-01","Linux Fedora",2481
+"2010-09-01","Linux Gentoo",671
+"2010-09-01","Linux Motor",34
+"2010-09-01","Linux Red Hat",561
+"2010-09-01","Linux SUSE",2644
+"2010-10-01","Linux Android",20059
+"2010-10-01","Linux CentOS",473
+"2010-10-01","Linux Debian",1964
+"2010-10-01","Linux Fedora",2461
+"2010-10-01","Linux Gentoo",732
+"2010-10-01","Linux Motor",28
+"2010-10-01","Linux Red Hat",549
+"2010-10-01","Linux SUSE",2728
+"2010-11-01","Linux Android",23861
+"2010-11-01","Linux CentOS",502
+"2010-11-01","Linux Debian",1912
+"2010-11-01","Linux Fedora",2528
+"2010-11-01","Linux Gentoo",684
+"2010-11-01","Linux Motor",28
+"2010-11-01","Linux Red Hat",559
+"2010-11-01","Linux SUSE",2651
+"2010-12-01","Linux Android",33036
+"2010-12-01","Linux CentOS",405
+"2010-12-01","Linux Debian",1544
+"2010-12-01","Linux Fedora",2193
+"2010-12-01","Linux Gentoo",646
+"2010-12-01","Linux Motor",22
+"2010-12-01","Linux Red Hat",419
+"2010-12-01","Linux SUSE",2326
+"2011-01-01","Linux Android",41592
+"2011-01-01","Linux CentOS",444
+"2011-01-01","Linux Debian",1632
+"2011-01-01","Linux Fedora",2448
+"2011-01-01","Linux Gentoo",657
+"2011-01-01","Linux Motor",24
+"2011-01-01","Linux Red Hat",495
+"2011-01-01","Linux SUSE",2676
+"2011-02-01","Linux Android",44566
+"2011-02-01","Linux CentOS",475
+"2011-02-01","Linux Debian",1505
+"2011-02-01","Linux Fedora",2350
+"2011-02-01","Linux Gentoo",607
+"2011-02-01","Linux Motor",19
+"2011-02-01","Linux Red Hat",548
+"2011-02-01","Linux SUSE",2623
+"2011-03-01","Linux Android",42221
+"2011-03-01","Linux CentOS",452
+"2011-03-01","Linux Debian",1400
+"2011-03-01","Linux Fedora",2199
+"2011-03-01","Linux Gentoo",550
+"2011-03-01","Linux Motor",17
+"2011-03-01","Linux Red Hat",526
+"2011-03-01","Linux SUSE",2134
+"2011-04-01","Linux Android",46091
+"2011-04-01","Linux CentOS",430
+"2011-04-01","Linux Debian",1266
+"2011-04-01","Linux Fedora",2005
+"2011-04-01","Linux Gentoo",390
+"2011-04-01","Linux Motor",16
+"2011-04-01","Linux Red Hat",490
+"2011-04-01","Linux SUSE",1853
+"2011-05-01","Linux Android",48787
+"2011-05-01","Linux CentOS",422
+"2011-05-01","Linux Debian",1272
+"2011-05-01","Linux Fedora",1858
+"2011-05-01","Linux Gentoo",345
+"2011-05-01","Linux Motor",15
+"2011-05-01","Linux Red Hat",488
+"2011-05-01","Linux SUSE",1781
+"2011-06-01","Linux Android",52178
+"2011-06-01","Linux CentOS",383
+"2011-06-01","Linux Debian",1064
+"2011-06-01","Linux Fedora",1553
+"2011-06-01","Linux Gentoo",330
+"2011-06-01","Linux Motor",15
+"2011-06-01","Linux Red Hat",452
+"2011-06-01","Linux SUSE",1569
+"2011-07-01","Linux Android",60719
+"2011-07-01","Linux CentOS",905
+"2011-07-01","Linux Debian",861
+"2011-07-01","Linux Fedora",1349
+"2011-07-01","Linux Gentoo",283
+"2011-07-01","Linux Motor",15
+"2011-07-01","Linux Red Hat",453
+"2011-07-01","Linux SUSE",1410
+"2011-08-01","Linux Android",63847
+"2011-08-01","Linux CentOS",344
+"2011-08-01","Linux Debian",783
+"2011-08-01","Linux Fedora",1292
+"2011-08-01","Linux Gentoo",272
+"2011-08-01","Linux Motor",15
+"2011-08-01","Linux Red Hat",417
+"2011-08-01","Linux SUSE",1281
+"2011-09-01","Linux Android",66894
+"2011-09-01","Linux CentOS",357
+"2011-09-01","Linux Debian",807
+"2011-09-01","Linux Fedora",1248
+"2011-09-01","Linux Gentoo",228
+"2011-09-01","Linux Motor",13
+"2011-09-01","Linux Red Hat",410
+"2011-09-01","Linux SUSE",1209

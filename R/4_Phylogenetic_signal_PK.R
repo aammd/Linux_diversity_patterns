@@ -1,18 +1,22 @@
-# ANALYSIS OF PHYLOGENETIC SIGNAL IN DEBIAN PACKAGES
+# -------------------------------------------------------------------------------
+# Description: Here we analyze the phylogenetic singal in Linux software
+# packages.
 
-# Authors:
+# Author:
 # Petr Keil, pkeil@seznam.cz
-# Gabriel Garcia Pena (the host specialization part)
+# ------------------------------------------------------------------------------
 
 library(ape)
 library(dplyr)
 library(plyr)
 library(tidyr)
 library(vegan) # for beta diversity indices
+library(ggtree)
+library(gridExtra)
 
 # ------------------------------------------------------------------------------
 # read the Debian tree
-  Deb.phylo <- readLines("data/Debian.newick") %>% 
+  Deb.phylo <- readLines("../data/Debian.newick") %>% 
                paste0(., sep=";") %>% 
                read.tree(text=.)
 
@@ -26,7 +30,7 @@ library(vegan) # for beta diversity indices
   Deb.phylo$tip.label[Deb.phylo$tip.label=="A/V"] <- "AV"
 
 # read the trait files
-  Deb.distros <- list.files("data/Debian_traits")
+  Deb.distros <- list.files("../data/Debian_traits")
 
 # trim the phylogenty so that it only contains the distros for which we have 
 # the data
@@ -59,7 +63,7 @@ library(vegan) # for beta diversity indices
 # and cleans package names
   read.paclist <- function(distro)
   {
-    paclist <- read.csv(file=paste("data/Debian_traits/", distro, sep=""), 
+    paclist <- read.csv(file=paste("../data/Debian_traits/", distro, sep=""), 
                         header=FALSE)[,1] %>% 
                         as.character %>%
                         sapply(X=., FUN = shorten.name) %>%
@@ -91,22 +95,102 @@ library(vegan) # for beta diversity indices
   Deb.data <- ldply(Deb.paclists) %>%
                     data.frame(. , ones=rep(1, nrow(.))  ) %>%
                     spread(data=., key=.id, value=ones, fill=0)
-  
-  ## Write out debian trait data ---
-  
-  readr::write_csv(Deb.data, "data/debian_trait_data.csv")    
-  
-  
     
   rownames(Deb.data) <- Deb.data$package
   Deb.data <- Deb.data[,-1]
   Deb.data <- t(Deb.data)
   Deb.data[1:10, 1:10]
   
+# ------------------------------------------------------------------------------  
+# REMOVE DEBIAN FROM TRAIT MATRIX
+  Deb.data <- Deb.data[rownames(Deb.data)!="Debian",]
+  Deb.data <- Deb.data[, colSums(Deb.data) != 0]
+  
+# REMOVE DEBIAN FROM THE PHYLOGENY  
+  Deb.phylo.trimmed <- drop.tip(Deb.phylo.trimmed, tip="Debian")
+  
   image(as.matrix(Deb.data))
   
+# EXPORT THE FILES
+  write.tree(Deb.phylo.trimmed, file="../data/traits_vs_phylogeny/Deb_clean_phylo.newick")
+  write.csv(data.frame(DISTRO=rownames(Deb.data), Deb.data), 
+            file="../data/traits_vs_phylogeny/Deb_clean_traits.csv",
+            row.names = FALSE)
+  
+# ------------------------------------------------------------------------------  
+# package caper and the statistics D
+  library(caper)
+  
+  # remove traits which are in all distros
+  Deb.data <- Deb.data[,colSums(Deb.data) != nrow(Deb.data)]
+  
+  for.caper <- data.frame(NAME=rownames(Deb.data), Deb.data) %>%
+               comparative.data(names.col=NAME, phy=Deb.phylo.trimmed)
+  
+  # modify the function phylo.d so that it does not do the weird states
+  # phylo.d.PK <- phylo.d
+  # fix(phylo.d.PK)
+  source("phylo.d.PK.r")
+  
+  # example use of one trait
+  a <- phylo.d.PK(data=for.caper, binvar="acl")
 
+  # loop through all traits
+  res <- list()
+  for(i in 1:ncol(Deb.data))
+  {
+    trait <- names(for.caper$data)[i]
+    message(trait); message(i)  
+    D <- phylo.d.PK(data=for.caper, binvar=trait, permut=400)
+    
+    res[[trait]] <- c(D = D$DEstimate, P0=D$Pval0, P1=D$Pval1)
+  }
 
+  res2 <- ldply(res, .id="package")
+  write.csv(res2, file="../data/D_stats.csv", row.names = FALSE)
+  
+  # ----------------------------------------------------------------------------
+  # plot the results
+  # ----------------------------------------------------------------------------
+  
+  D <- read.csv("../data/D_stats.csv")
+  
+  # proportion of traits with p <= 0.05
+  sum(D$P1 <= 0.05)/nrow(D)
+  sum(D$P1 <= 0.10)/nrow(D)
+  
+  library(ggplot2)
+  library(ggExtra)
+  p <- ggplot(D, aes(x=D.Obs, y=P1)) + 
+       geom_point(alpha=0.2, aes(colour=P1)) +
+       geom_vline(xintercept = c(1)) + 
+    xlim(c(-12, 12)) +
+    theme_bw() +
+    labs(x="D", y="P") +
+  theme(legend.position = c(0.8, 0.2)) 
+       ggMarginal(p, type="histogram")
+  
+ P.D <- ggplot(D, aes(x=D.Obs)) +
+   geom_histogram(fill="darkgrey", binwidth=0.5) +
+   geom_vline(xintercept = 1, colour="red") +
+   geom_segment(aes(x = -5, y = 1000, xend = -3, yend = 600),
+                arrow = arrow(length = unit(0.3, "cm"))) +
+   xlim(c(-11,11)) +
+   labs(x="D statistic", title="(d)") +
+   theme_bw()
+       
+       
+ P.P <- ggplot(D, aes(x=P1)) +
+    geom_histogram(fill="darkgrey", binwidth=0.02) +
+    geom_vline(xintercept = 0.05, colour="blue") +
+    labs(x="P value", title="(e)") +
+    theme_bw()
+
+       
+
+       
+
+  
 # ------------------------------------------------------------------------------
 # create beta diversity distance matrices based on binary trait matrices
   
@@ -138,89 +222,41 @@ library(vegan) # for beta diversity indices
   
 # ------------------------------------------------------------------------------
 # plots of phylogenetic distance vs. trait similarity
+ library(ggtree)
 
-  # read results of the specialist/generalist analysis 
-  D <- read.csv("data/specialists_vs_generalists.csv")
+# plot the mantel correlatio with beta sim
+  
+  beta.data <- data.frame(Betasim = as.vector(Deb.beta.sim),
+                          Betajac = as.vector(Deb.beta.j),
+                          Dist = as.vector(Deb.phylo.dist))
+  
+  P.betasim <- ggplot(beta.data, aes(x=Dist, y=Betasim)) +
+    geom_point(alpha=0.5, shape=21) +
+    theme_bw() +
+    labs(x="Phylogenetic distance [years * 2]", y=~beta[Sim], title="(b)") +
+    annotate(geom="text", label=paste("Rho =", r.sim, "**"), x=8, y=1)
+  P.betasim
+  
+  P.betajac <- ggplot(beta.data, aes(x=Dist, y=Betajac)) +
+    geom_point(alpha=0.5, shape=21) +
+    theme_bw() +
+    labs(x="Phylogenetic distance [years * 2]", y=~beta[Jaccard], title="(c)") +
+    annotate(geom="text", label=paste("Rho =", r.j, "**"), x=8, y=1)
+  P.betajac
   
   
-pdf("figures/Figure_4.pdf", width=9.5, height=7)
-  layout(matrix(c(1,2,4,1,3,5), nrow=2, ncol=3, byrow=TRUE))
- 
-  par(mai=c(0.1,0.1,0.3,0.1))
-  plot(Deb.phylo.trimmed, cex=1.05)
-  mtext("A", adj=0, padj=-0.5, font=2)
+  # plot the tree:
+  P.tree <-  ggtree(Deb.phylo.trimmed) + 
+    geom_tiplab(hjust=1, vjust=-.3, size=2.3)+
+    labs(title="(a)") 
   
-  par(bty="l", mai=c(1,0.8,0.3,0.1))
-  plot(Deb.phylo.dist, Deb.beta.sim, col=rgb(0,0,0,alpha=0.2), 
-       pch=19, las=1, ylim=c(0,1),
-       xlab="Phylogenetic distance [years * 2]",
-       ylab=~beta[sim])
-  legend("bottomright", legend=paste("Rho =", r.sim, "**"),
-         bg="white" )
-  mtext("B", adj=-0.14, padj=-0.5, font=2)
- 
-  barplot(table(D$host.specialist), col="grey", border=NA,
-          names=c("Host generalists", "Host specialists"),
-          ylab="# of packages")
-  mtext("D", adj=-0.2, padj=-0.5, font=2)
   
-  plot(Deb.phylo.dist, Deb.beta.j, col=rgb(0,0,0,alpha=0.2), 
-       pch=19, las=1, ylim=c(0,1),
-       xlab="Phylogenetic distance [years * 2]",
-       ylab=~beta[Jaccard])
-  legend("bottomright", legend=paste("Rho =", r.j, "***"), 
-         bg="white")
-  mtext("C", adj=-0.14, padj=-0.5, font=2)
+  MAT <-  matrix(c(1,2, 3,
+                   1,4, 5), nrow=2, ncol=3, byrow=TRUE)
+  
+pdf("../figures/phylo_signal.pdf", width=10, height=7)
+ grid.arrange(P.tree, P.betasim, P.betajac, P.D, P.P,
+              layout_matrix=MAT)
 dev.off()
-
-system("
-convert -density 150 figures/Figure_4.pdf figures/Figure_4.png
-       ")
-
-
-# ------------------------------------------------------------------------------
-# PHYLOGENETIC GENERALIST or SPECIALIST
-
-par(cex=0.5, mai=c(1,3,3,1))
-Imagine(Deb.data, fill=F, xlab="", ylab="",
-        col=c("beige", "darkslateblue"))
-
-
-# TEST FOR THE PHYLOGENETIC SIGNAL (HOST SPECIALIZATION) OF EACH PACKAGE-
-# classification is based on D$mpd.obs.p=<0.05)
-# a Z-test on whether mpd.obs = mpd.rand.mean
-# TAKES ABOUT 10min TO CALCULATE!!
-X<-ses.mpd(t(com), cophenetic(Deb.phylo.trimmed), 
-           null.model="phylogeny.pool", abundance.weighted=FALSE)
-D<-data.frame(package.name=colnames(com), X)
-D$host.specialist<-ifelse(D$mpd.obs.p>=0.05, 0,1)
-
-write.csv(D, "data/specialists_vs_generalists.csv", row.names=FALSE)
-
-pdf("figures/host.specialist.packgs.pdf", width=8, height=8)
-layout(matrix(c(1,2,1,3), nrow=1, ncol=1, byrow=TRUE))
-
-  par(mai=c(0,0,0.5,0), cex=1)
-  tree<-Deb.phylo.trimmed
-  plot(tree, cex=0.7, type="c", use.edge.length=F,label.offset=1)
-  par(cex=0.7, font=1)
-  title("phylogeny of distros")
-  grid(nx=20, ny=20, col="lightsteelblue", lty="dotted")
   
-  par(cex=0.5, mai=c(1,3,3,1))
-  Imagine(Deb.data, fill=F, xlab="", ylab="",
-          col=c("beige", "darkslateblue"))
   
-  par(cex=1, mai=c(1,1,1,1))
-  barplot(table(D$host.specialist), col="firebrick", 
-          names=c("generalist, p > 0.05", "specialist, p < 0.05"))
-  par(cex=0.9, font=2)
-  title("packages")
-  
-dev.off()
-
-  
-
-
-
-

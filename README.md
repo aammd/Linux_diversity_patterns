@@ -3,11 +3,11 @@
 
 # From computer operating systems to biodiversity: co-emergence of ecological and evolutionary patterns
 
+**Description:** This repository contains all data and R code that were used for a paper that looks for biodiversity patterns in the universe of GNU/Linux operating systems.
+
 **Authors of the code:** *A. Andrew M. MacDonald (AMD),  Gabriel E. García-Peña (GGP), Petr Keil (PK)*
 
 **Authors of the paper:** *Petr Keil, Joanne M. Bennett, Bérenger Bourgeois, Gabriel E. García-Peña, A. Andrew M. MacDonald, Carsten Meyer, Kelly S. Ramirez & Benjamin Yguel* (co-authors ordered alphabetically)
-
-**Description:** This repository contains all data and R code that were used for a paper that looks for biodiversity patterns in the universe of GNU/Linux operating systems.
 
 **License:** GNU GPL
  
